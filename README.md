@@ -146,11 +146,11 @@ GBE-DECK/
 <table>
   <tr>
     <td align="center">
-      <img src="pages/Programs/Programs.png" alt="Programs" /><br/>
+      <img src="Pages/Programs/Programs.png" alt="Programs" /><br/>
       <strong>Programs</strong>
     </td>
     <td align="center">
-      <img src="pages/Web Browser/Web-Browser.png" alt="Web Browser" /><br/>
+      <img src="Pages/Web Browser/Web-Browser.png" alt="Web Browser" /><br/>
       <strong>Web Browser</strong>
     </td>
   </tr>
