@@ -156,31 +156,31 @@ GBE-DECK/
   </tr>
   <tr>
     <td align="center">
-      <img src="pages/Discord/Discord.png" alt="Discord" /><br/>
+      <img src="Pages/Discord/Discord.png" alt="Discord" /><br/>
       <strong>Discord</strong>
     </td>
     <td align="center">
-      <img src="pages/File Explorer/File-Explorer.png" alt="File Explorer" /><br/>
+      <img src="Pages/File Explorer/File-Explorer.png" alt="File Explorer" /><br/>
       <strong>File Explorer</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="pages/Games/Games.png" alt="Games" /><br/>
+      <img src="Pages/Games/Games.png" alt="Games" /><br/>
       <strong>Games</strong>
     </td>
     <td align="center">
-      <img src="pages/Quick Controls/Quick-Controls.png" alt="Quick Controls" /><br/>
+      <img src="Pages/Quick Controls/Quick-Controls.png" alt="Quick Controls" /><br/>
       <strong>Quick Controls</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="pages/Spotify/Spotify.png" alt="Spotify" /><br/>
+      <img src="Pages/Spotify/Spotify.png" alt="Spotify" /><br/>
       <strong>Spotify</strong>
     </td>
     <td align="center">
-      <img src="pages/Web Browser/Youtube/YouTube.png" alt="Youtube" /><br/>
+      <img src="Pages/Web Browser/Youtube/YouTube.png" alt="Youtube" /><br/>
       <strong>YouTube</strong>
     </td>
   </tr>
@@ -219,21 +219,21 @@ YouTube, Netflix, Twitch Gmail, Google Docs, GitHub, LinkedIn
 <table>
   <tr>
     <td align="center">
-      <img src="pages/Button List/Button List 1.png" alt="Button List 1" /><br/>
+      <img src="Pages/Button List/Button List 1.png" alt="Button List 1" /><br/>
       <strong>Button List 1</strong>
     </td>
     <td align="center">
-      <img src="pages/Button List/Button List 2.png" alt="Button List 2" /><br/>
+      <img src="Pages/Button List/Button List 2.png" alt="Button List 2" /><br/>
       <strong>Button List 2</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="pages/Button List/Button List 3.png" alt="Button List 3" /><br/>
+      <img src="Pages/Button List/Button List 3.png" alt="Button List 3" /><br/>
       <strong>Button List 3</strong>
     </td>
     <td align="center">
-      <img src="pages/Button List/Button List 4.png" alt="Button List 4" /><br/>
+      <img src="Pages/Button List/Button List 4.png" alt="Button List 4" /><br/>
       <strong>Button List 4</strong>
     </td>
   </tr>
