@@ -185,6 +185,7 @@ GBE-DECK/
     </td>
   </tr>
 </table>
+
 ---
 
 # 🧩 Button List Overview
@@ -209,7 +210,7 @@ Photoshop, Illustrator, XD, InDesign, FL Studio, Ableton, DaVinci, Blender, Figm
 
 ### Button List 3 – Websites
 
-YouTube, Netflix, Twitch Gmail, Google Docs, GitHub, LinkedIn
+YouTube, Netflix, Twitch, Gmail, Google Docs Sheets and Slides, GitHub, LinkedIn, Hulu, Disney Plus, Reddit, CruncyRoll, X and Twitter, Amazon, Twitch, Canva, Parmount Plus, Facebook, Github
 
 ### Button List 4 – Games & Launchers
 
