@@ -214,8 +214,9 @@ YouTube, Netflix, Twitch, Gmail, Google Docs Sheets and Slides, GitHub, LinkedIn
 
 ### Button List 4 – Games & Launchers
 
-- **Launchers**: Steam, Epic Games, Xbox, Battle.net, Riot
-- **Games**: Minecraft, Rocket League, Fortnite, CS, PUBG, Overwatch 2, Valorant, League of Legends, Roblox, Team Fortress 2, Elden Ring, Hades I & II, Beat Saber, Apex Legends, Genshin Impact
+**Launchers**: Steam, Epic Games, Xbox, Battle.net, Riot
+
+**Games**: Minecraft, Rocket League, Fortnite, CS, PUBG, Overwatch 2, Valorant, League of Legends, Roblox, Team Fortress 2, Elden Ring, Hades I & II, Beat Saber, Apex Legends, Genshin Impact
 
 <table>
   <tr>
