@@ -6,7 +6,7 @@ from pathlib import Path
 # Paths
 pages_dir = Path("Pages")
 output_file = Path("GBE-Custom-Bundle.tpz2")
-selection_file = Path("selected-pages.json")
+selection_file = Path("bundle-trigger/selected-pages.json")
 
 # Load selected page names
 with open(selection_file, "r") as f:
