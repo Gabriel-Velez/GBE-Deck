@@ -8,7 +8,7 @@ A highly modular, dark-mode-optimized Touch Portal setup built for productivity,
 
 1. **Import All Pages**
 
-   - Select all pages from to the [Live Tool](gabriel-velez.github.io/GBE-Deck) and import them into TouchPortal
+   - Select all pages from to the [Live Tool](https://gabriel-velez.github.io/GBE-Deck/) and import them into TouchPortal
 
 2. **Customize to Your Setup**
 
@@ -25,7 +25,7 @@ A highly modular, dark-mode-optimized Touch Portal setup built for productivity,
 
 The GBE Deck site lets you visually choose which pages to include in your custom Touch Portal bundle. Just click, bundle, and go—your personalized setup is generated automatically.
 
-🌐 [Live Tool](gabriel-velez.github.io/GBE-Deck)
+🌐 [Live Tool](https://gabriel-velez.github.io/GBE-Deck/)
 
 # 📁 Contents
 
