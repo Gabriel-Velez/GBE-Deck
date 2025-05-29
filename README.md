@@ -8,7 +8,7 @@ A highly modular, dark-mode-optimized Touch Portal setup built for productivity,
 
 1. **Import All Pages**
 
-   - Import the `All-Pages.tpz2` file into Touch Portal to load all included pages at once.
+   - Select all pages from to the [Live Tool](gabriel-velez.github.io/GBE-Deck) and import them into TouchPortal
 
 2. **Customize to Your Setup**
 
@@ -20,6 +20,12 @@ A highly modular, dark-mode-optimized Touch Portal setup built for productivity,
    - Replace each button’s action with your installed app’s executable or relevant script.
 
 ---
+
+# 🎛️ GBE Deck Page Selector
+
+The GBE Deck site lets you visually choose which pages to include in your custom Touch Portal bundle. Just click, bundle, and go—your personalized setup is generated automatically.
+
+🌐 [Live Tool](gabriel-velez.github.io/GBE-Deck)
 
 # 📁 Contents
 
