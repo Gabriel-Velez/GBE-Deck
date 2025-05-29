@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GBE Deck Page Selector</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+        padding: 2rem;
+      }
+      h1 {
+        color: #72bcd4;
+        text-align: center;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .wrapper {
+        max-width: 812px;
+        margin: 0 auto;
+      }
+      details {
+        border: 1px solid #444;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        background-color: #2a2a2a;
+      }
+      summary {
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 0.5rem;
+      }
+      label {
+        display: block;
+        margin: 0.25rem 0;
+      }
+      .submit-button {
+        margin: 2rem auto 0 auto;
+        display: block;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #4ea5d9;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      .toggle-group {
+        display: block;
+        padding: 0.5rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #4ea5d9;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      .submit-button:disabled {
+        background-color: #888;
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Select Pages to Bundle</h1>
+      <button id="toggleAll" class="submit-button">Select All</button>
+      <div class="grid">
+        <details open>
+          <summary>General</summary>
+          <label><input type="checkbox" class="page-check" value="Programs" /> Programs</label>
+          <label><input type="checkbox" class="page-check" value="Games" /> Games</label>
+          <label
+            ><input type="checkbox" class="page-check" value="File Explorer" /> File Explorer</label
+          >
+          <label><input type="checkbox" class="page-check" value="Main Menu" /> Main Menu</label>
+          <label
+            ><input type="checkbox" class="page-check" value="Quick Controls" /> Quick
+            Controls</label
+          >
+          <button class="toggle-group" type="button">Select All</button>
+        </details>
+
+        <details open>
+          <summary>Music</summary>
+          <label><input type="checkbox" class="page-check" value="Spotify" /> Spotify</label>
+          <label
+            ><input type="checkbox" class="page-check" value="YouTube Music" /> YouTube Music</label
+          >
+          <button class="toggle-group" type="button">Select All</button>
+        </details>
+
+        <details open>
+          <summary>Web Browser</summary>
+          <label
+            ><input type="checkbox" class="page-check" value="Web Browser Controls" /> Web Browser
+            Controls</label
+          >
+          <label><input type="checkbox" class="page-check" value="YouTube" /> YouTube</label>
+          <button class="toggle-group" type="button">Select All</button>
+        </details>
+
+        <details open>
+          <summary>Coding Tools</summary>
+          <label
+            ><input type="checkbox" class="page-check" value="Coding Tools (Menu)" /> Coding Tools
+            (Menu)</label
+          >
+          <label><input type="checkbox" class="page-check" value="HTML" /> HTML</label>
+          <label><input type="checkbox" class="page-check" value="CSS" /> CSS</label>
+          <label><input type="checkbox" class="page-check" value="JavaScript" /> JavaScript</label>
+          <label><input type="checkbox" class="page-check" value="Python" /> Python</label>
+          <label><input type="checkbox" class="page-check" value="Regex" /> Regex</label>
+          <label><input type="checkbox" class="page-check" value="SQL" /> SQL</label>
+          <label><input type="checkbox" class="page-check" value="GIT" /> GIT</label>
+          <label><input type="checkbox" class="page-check" value="Terminal" /> Terminal</label>
+          <label><input type="checkbox" class="page-check" value="Markdown" /> Markdown</label>
+          <button class="toggle-group" type="button">Select All</button>
+        </details>
+
+        <details open>
+          <summary>Adobe Tools</summary>
+          <label
+            ><input type="checkbox" class="page-check" value="Photoshop Tools" /> Photoshop
+            Tools</label
+          >
+          <label
+            ><input type="checkbox" class="page-check" value="Photoshop Functions" /> Photoshop
+            Functions</label
+          >
+          <label
+            ><input type="checkbox" class="page-check" value="Illustrator Tools" /> Illustrator
+            Tools</label
+          >
+          <button class="toggle-group" type="button">Select All</button>
+        </details>
+
+        <details open>
+          <summary>Call Controls</summary>
+          <label><input type="checkbox" class="page-check" value="Discord" /> Discord</label>
+          <label><input type="checkbox" class="page-check" value="Zoom" /> Zoom</label>
+          <button class="toggle-group" type="button">Select All</button>
+        </details>
+
+        <details open>
+          <summary>Templates</summary>
+          <label><input type="checkbox" class="page-check" value="Template" /> Template</label>
+          <label
+            ><input type="checkbox" class="page-check" value="Button Lists" /> Button Lists</label
+          >
+          <button class="toggle-group" type="button">Select All</button>
+        </details>
+      </div>
+
+      <button class="submit-button" id="bundleButton" disabled>Bundle Selection</button>
+    </div>
+
+    <script>
+      const toggleAllButton = document.getElementById("toggleAll");
+      let allSelected = false;
+
+      toggleAllButton.addEventListener("click", () => {
+        allSelected = !allSelected;
+        checkboxes.forEach((cb) => (cb.checked = allSelected));
+        toggleAllButton.textContent = allSelected ? "Deselect All" : "Select All";
+        updateButtonState();
+      });
+
+      const checkboxes = document.querySelectorAll(".page-check");
+      const button = document.getElementById("bundleButton");
+
+      function updateButtonState() {
+        const anyChecked = Array.from(checkboxes).some((cb) => cb.checked);
+        button.disabled = !anyChecked;
+      }
+
+      checkboxes.forEach((cb) => cb.addEventListener("change", updateButtonState));
+
+      document.querySelectorAll(".toggle-group").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const details = btn.closest("details");
+          const checkboxes = details.querySelectorAll("input[type='checkbox']");
+          const allChecked = [...checkboxes].every((cb) => cb.checked);
+
+          checkboxes.forEach((cb) => (cb.checked = !allChecked));
+          btn.textContent = allChecked ? "Select All" : "Deselect All";
+
+          updateButtonState();
+        });
+      });
+      document.getElementById("bundleButton").addEventListener("click", async () => {
+        const selected = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(
+          (cb) => cb.value
+        );
+
+        if (selected.length === 0) return;
+        button.disabled = true;
+        button.textContent = "Bundling...";
+
+        try {
+          console.log("Selected pages:", selected);
+          const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ pages: selected }),
+          });
+
+          if (res.ok) {
+            button.textContent = "✅ Sent! Building...";
+          } else {
+            button.textContent = "❌ Failed — see console";
+            console.error(await res.text());
+          }
+        } catch (err) {
+          button.textContent = "❌ Error";
+          console.error(err);
+        }
+
+        setTimeout(() => {
+          button.disabled = false;
+          button.textContent = "Bundle Selection";
+        }, 4000);
+      });
+    </script>
+  </body>
+</html>
