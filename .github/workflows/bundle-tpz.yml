@@ -1,6 +1,8 @@
 name: Bundle Selected Pages
 
 on:
+  repository_dispatch:
+    types: [bundle-pages]
   push:
     branches:
       - main
