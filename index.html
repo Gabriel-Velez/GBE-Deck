@@ -68,6 +68,30 @@
         background-color: #888;
         cursor: not-allowed;
       }
+      #spinner {
+        display: none;
+        margin: 1rem auto;
+        border: 4px solid #444;
+        border-top: 4px solid #72bcd4;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #statusMessage {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.95rem;
+        color: #aaa;
+      }
     </style>
   </head>
   <body>
@@ -162,6 +186,8 @@
       </div>
 
       <button class="submit-button" id="bundleButton" disabled>Bundle Selection</button>
+      <div id="spinner"></div>
+      <p id="statusMessage"></p>
     </div>
 
     <script>
@@ -180,7 +206,11 @@
 
       function updateButtonState() {
         const anyChecked = Array.from(checkboxes).some((cb) => cb.checked);
-        button.disabled = !anyChecked;
+        if (anyChecked && button.textContent === "Bundle Selection") {
+          button.disabled = false;
+        } else {
+          button.disabled = true;
+        }
       }
 
       checkboxes.forEach((cb) => cb.addEventListener("change", updateButtonState));
@@ -205,8 +235,13 @@
         if (selected.length === 0) return;
 
         const button = document.getElementById("bundleButton");
+        const status = document.getElementById("statusMessage");
+        const spinner = document.getElementById("spinner");
+
         button.disabled = true;
         button.textContent = "Bundling...";
+        status.textContent = "";
+        spinner.style.display = "block";
 
         try {
           const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
@@ -219,26 +254,31 @@
 
           if (res.ok) {
             button.textContent = "✅ Sent! Building...";
-            pollForReleaseAndDownload(); // start polling
+            pollForReleaseAndDownload();
           } else {
             button.textContent = "❌ Failed — see console";
             console.error(await res.text());
+            spinner.style.display = "none";
           }
         } catch (err) {
           button.textContent = "❌ Error";
           console.error(err);
+          spinner.style.display = "none";
         }
-
-        setTimeout(() => {
-          button.disabled = false;
-          button.textContent = "Bundle Selection";
-        }, 4000);
       });
 
-      // STEP 2 + 3: Poll for GitHub Release and Cleanup after download
       async function pollForReleaseAndDownload() {
         const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
+        const status = document.getElementById("statusMessage");
+        const spinner = document.getElementById("spinner");
+        const button = document.getElementById("bundleButton");
+        let attempts = 0;
+
+        status.textContent =
+          "⏳ Waiting for bundle to become available... This may take up to a minute.";
+
         const interval = setInterval(async () => {
+          attempts++;
           const res = await fetch(url);
           const releases = await res.json();
 
@@ -247,23 +287,34 @@
             const asset = target.assets.find((a) => a.name === "GBE-Custom-Bundle.tpz2");
             if (asset) {
               clearInterval(interval);
+              status.textContent = "✅ Bundle ready! Downloading...";
+              spinner.style.display = "none";
 
-              // DOWNLOAD .tpz2
               const downloadUrl = asset.browser_download_url;
               const link = document.createElement("a");
               link.href = downloadUrl;
               link.download = asset.name;
               link.click();
 
-              // CLEANUP .json and release
               await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  action: "cleanup",
-                }),
+                body: JSON.stringify({ action: "cleanup" }),
               });
+
+              status.textContent = "✅ Done. You can select a new bundle anytime.";
+              button.textContent = "Bundle Selection";
+              updateButtonState();
+              return;
             }
+          }
+
+          if (attempts > 12) {
+            clearInterval(interval);
+            status.textContent = "❌ Timeout. Try again in a minute.";
+            spinner.style.display = "none";
+            button.textContent = "Bundle Selection";
+            updateButtonState();
           }
         }, 5000);
       }
