@@ -186,7 +186,7 @@ GBE-DECK/
       <strong>Spotify</strong>
     </td>
     <td align="center">
-      <img src="Pages/Web Browser/Youtube/YouTube.png" alt="Youtube" /><br/>
+      <img src="Pages/Youtube/YouTube.png" alt="Youtube" /><br/>
       <strong>YouTube</strong>
     </td>
   </tr>
