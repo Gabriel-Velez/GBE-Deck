@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths:
-      - bundle-trigger/selected=pages.json
+      - bundle-trigger/selected-pages.json
 
 jobs:
   build-bundle:
