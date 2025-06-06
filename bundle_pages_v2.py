@@ -26,16 +26,20 @@ with tempfile.TemporaryDirectory() as tmpdir:
     final_img_dir.mkdir()
 
     for name in selected:
+        print(f"🔍 Looking for: Pages/**/{name}/{name}.tpz2")
         tpz_path = None
-        # Recursively search for matching tpz2 file
+
+        # Search recursively for exact match
         for path in pages_root.rglob(f"{name}/{name}.tpz2"):
             tpz_path = path
             break
 
-        if not tpz_path or not tpz_path.exists():
-            print(f"[WARN] Missing: {name}.tpz2")
+        if tpz_path and tpz_path.exists():
+            print(f"✅ Found: {tpz_path}")
+        else:
+            print(f"❌ Not found: {name} — skipping")
             continue
-
+        
         extract_dir = tmpdir_path / name
         with zipfile.ZipFile(tpz_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
