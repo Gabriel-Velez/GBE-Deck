@@ -39,7 +39,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         else:
             print(f"❌ Not found: {name} — skipping")
             continue
-        
+
         extract_dir = tmpdir_path / name
         with zipfile.ZipFile(tpz_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
@@ -86,11 +86,12 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
-    # Zip everything into final .tpz2
+    # ✅ Zip everything including img folder
     with zipfile.ZipFile(output_file, 'w') as bundle:
         for file in tmpdir_path.glob("*.*"):
             bundle.write(file, arcname=file.name)
-        for img_file in final_img_dir.iterdir():
-            bundle.write(img_file, arcname=f"img/{img_file.name}")
+        for img_file in final_img_dir.rglob("*"):
+            relative_path = img_file.relative_to(tmpdir_path)
+            bundle.write(img_file, arcname=str(relative_path))
 
 print(f"[DONE] Created bundle: {output_file.resolve()}")
