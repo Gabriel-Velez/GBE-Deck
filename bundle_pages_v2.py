@@ -1,10 +1,11 @@
 import json
 import zipfile
 import tempfile
+import shutil
 from pathlib import Path
 
 # Paths
-pages_dir = Path("Pages")
+pages_root = Path("Pages")
 output_file = Path("GBE-Custom-Bundle.tpz2")
 selection_file = Path("bundle-trigger/selected-pages.json")
 
@@ -12,27 +13,80 @@ selection_file = Path("bundle-trigger/selected-pages.json")
 with open(selection_file, "r") as f:
     selected = json.load(f).get("pages", [])
 
-# Temp folder for gathering .tpi files
+# Merged data holders
+merged_buttons = []
+merged_pages = []
+merged_images = []
+uuid_set = set()
+
+# Start temp workspace
 with tempfile.TemporaryDirectory() as tmpdir:
     tmpdir_path = Path(tmpdir)
+    final_img_dir = tmpdir_path / "img"
+    final_img_dir.mkdir()
 
     for name in selected:
-        # Convert to kebab-case filename (e.g. "PhotoShop Tools" -> "PhotoShop-Tools")
-        folder_name = name.replace(" ", "-")
-        tpz_path = pages_dir / folder_name / f"{folder_name}.tpz2"
+        tpz_path = None
+        # Recursively search for matching tpz2 file
+        for path in pages_root.rglob(f"{name}/{name}.tpz2"):
+            tpz_path = path
+            break
 
-        if not tpz_path.exists():
-            print(f"[WARN] Missing: {tpz_path}")
+        if not tpz_path or not tpz_path.exists():
+            print(f"[WARN] Missing: {name}.tpz2")
             continue
 
+        extract_dir = tmpdir_path / name
         with zipfile.ZipFile(tpz_path, 'r') as zip_ref:
-            for file in zip_ref.namelist():
-                if file.endswith(".tpi"):
-                    zip_ref.extract(file, tmpdir_path)
+            zip_ref.extractall(extract_dir)
 
-    # Bundle all extracted .tpi into one .tpz2 file
+        data_path = extract_dir / "data.json"
+        img_path = extract_dir / "img"
+
+        # Merge data.json
+        if data_path.exists():
+            with open(data_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                merged_buttons.extend(data.get("buttons", []))
+                merged_pages.extend(data.get("pages", []))
+
+                for img in data.get("images", []):
+                    if img["uuid"] not in uuid_set:
+                        merged_images.append(img)
+                        uuid_set.add(img["uuid"])
+
+        # Merge img files
+        if img_path.exists():
+            for file in img_path.iterdir():
+                target = final_img_dir / file.name
+                if not target.exists():
+                    shutil.copy(file, target)
+
+    # Use version from last page (or fallback)
+    version_data = {"version": "3.1.6"}
+    if (extract_dir / "version.json").exists():
+        with open(extract_dir / "version.json", "r", encoding="utf-8") as f:
+            version_data = json.load(f)
+
+    # Build new data.json
+    merged_data = {
+        "buttons": merged_buttons,
+        "pages": merged_pages,
+        "images": merged_images,
+        "version": version_data.get("version", "3.1.6")
+    }
+
+    with open(tmpdir_path / "data.json", "w", encoding="utf-8") as f:
+        json.dump(merged_data, f, indent=2)
+
+    with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
+        json.dump(version_data, f, indent=2)
+
+    # Zip everything into final .tpz2
     with zipfile.ZipFile(output_file, 'w') as bundle:
-        for tpi_file in tmpdir_path.rglob("*.tpi"):
-            bundle.write(tpi_file, arcname=tpi_file.name)
+        for file in tmpdir_path.glob("*.*"):
+            bundle.write(file, arcname=file.name)
+        for img_file in final_img_dir.iterdir():
+            bundle.write(img_file, arcname=f"img/{img_file.name}")
 
 print(f"[DONE] Created bundle: {output_file.resolve()}")
