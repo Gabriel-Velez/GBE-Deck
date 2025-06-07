@@ -86,11 +86,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
-    # ✅ Zip everything including img folder
-    with zipfile.ZipFile(output_file, 'w') as bundle:
-        for file in tmpdir_path.glob("*.*"):
-            bundle.write(file, arcname=file.name)
-
     # Zip everything into final .tpz2
     with zipfile.ZipFile(output_file, 'w') as bundle:
         for file in tmpdir_path.glob("*.*"):
