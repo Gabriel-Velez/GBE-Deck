@@ -43,10 +43,22 @@ with tempfile.TemporaryDirectory() as tmpdir:
         with zipfile.ZipFile(tpz_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
 
-        data_path = extract_dir / "data.json"
-        img_path = extract_dir / "img"
+        # Inspect extracted contents
+        print(f"📂 Contents of {extract_dir}:")
+        for item in extract_dir.rglob("*"):
+            print(f"   → {item.relative_to(extract_dir)}")
+
+        # Locate the actual img folder after extraction
+        possible_img = extract_dir / "img"
+        img_path = possible_img if possible_img.exists() else None
+
+        if img_path:
+            print(f"📁 Found image folder: {img_path}")
+        else:
+            print(f"🚫 No img folder found in: {extract_dir}")
 
         # Merge data.json
+        data_path = extract_dir / "data.json"
         if data_path.exists():
             with open(data_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -58,8 +70,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         uuid_set.add(img["uuid"])
 
         # Merge img files
-        if img_path.exists():
-            print(f"📂 Found image folder: {img_path}")
+        if img_path:
             img_files = list(img_path.iterdir())
             if not img_files:
                 print("⚠️ Image folder is empty.")
@@ -71,10 +82,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
                     print(f"✅ Copied to: {target}")
                 else:
                     print(f"⏩ Skipped (already exists): {target}")
-        else:
-            print(f"🚫 No img folder found in: {extract_dir}")
 
-    # Optional: dummy image to test zip (remove later)
+    # Optional: dummy image for zip verification
     dummy_path = final_img_dir / "debug.txt"
     dummy_path.write_text("image merge test")
 
@@ -84,7 +93,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         with open(extract_dir / "version.json", "r", encoding="utf-8") as f:
             version_data = json.load(f)
 
-    # Build new data.json
+    # Build final data.json
     merged_data = {
         "buttons": merged_buttons,
         "pages": merged_pages,
@@ -98,12 +107,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
-    # DEBUG: what's in img/
-    print(f"\n📁 Final img/ contents:")
-    for p in final_img_dir.rglob("*"):
-        print(f"   → {p.relative_to(tmpdir_path)}")
-
-    # ✅ Final zip: only top-level + unified img/
+    # Zip it all up
+    print(f"\n📦 Creating final bundle...")
     with zipfile.ZipFile(output_file, 'w') as bundle:
         for file in tmpdir_path.glob("*.*"):
             archive_path = file.name
