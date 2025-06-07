@@ -29,7 +29,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
         print(f"🔍 Looking for: Pages/**/{name}/{name}.tpz2")
         tpz_path = None
 
-        # Search recursively for exact match
         for path in pages_root.rglob(f"{name}/{name}.tpz2"):
             tpz_path = path
             break
@@ -53,7 +52,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 data = json.load(f)
                 merged_buttons.extend(data.get("buttons", []))
                 merged_pages.extend(data.get("pages", []))
-
                 for img in data.get("images", []):
                     if img["uuid"] not in uuid_set:
                         merged_images.append(img)
@@ -62,9 +60,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
         # Merge img files
         if img_path.exists():
             for file in img_path.iterdir():
+                print(f"🖼️  Copying image: {file.name}")
                 target = final_img_dir / file.name
                 if not target.exists():
                     shutil.copy(file, target)
+
+    # DEBUG: force a dummy image to prove zip logic works
+    dummy_path = final_img_dir / "debug.txt"
+    dummy_path.write_text("image merge test")
 
     # Use version from last page (or fallback)
     version_data = {"version": "3.1.6"}
@@ -86,14 +89,20 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
+    # FINAL CHECK: what’s in img/ before zipping
+    print(f"\n📁 Final img/ contents:")
+    for p in final_img_dir.rglob("*"):
+        print(f"   → {p.relative_to(tmpdir_path)}")
+
+    # Zip everything into final .tpz2
     with zipfile.ZipFile(output_file, 'w') as bundle:
         for file in tmpdir_path.glob("*.*"):
             print(f"📦 Adding top-level file: {file.name}")
             bundle.write(file, arcname=file.name)
-        
+
         for img_file in final_img_dir.rglob("*"):
-            relative_path = img_file.relative_to(tmpdir_path / "img").with_name(f"img/{img_file.name}")
+            relative_path = img_file.relative_to(tmpdir_path)
             print(f"🧷 Adding image file: {relative_path}")
             bundle.write(img_file, arcname=str(relative_path))
 
-print(f"[DONE] Created bundle: {output_file.resolve()}")
+print(f"\n✅ [DONE] Created bundle: {output_file.resolve()}")
