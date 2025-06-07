@@ -62,20 +62,20 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
         # Locate image files in extracted img/ folder
         img_path = extract_dir / "img"
-        img_files = list(img_path.glob("*.png")) if img_path.exists() else []
-
-        if img_files:
-            print(f"📁 Found {len(img_files)} icon files in: {img_path}")
-            for file in img_files:
-                print(f"🖼️ Found: {file.name}")
-                target = final_img_dir / file.name
+        if img_path.exists():
+            print(f"📂 img_path exists: {img_path}")
+            img_files = [f for f in img_path.iterdir() if f.is_file() and f.suffix.lower() == ".png"]
+            print(f"Found {len(img_files)} files in {img_path}")
+            for f in img_files:
+                print(f"   -- Detected file: {f.name}")
+                target = final_img_dir / f.name
                 if not target.exists():
-                    shutil.copy(file, target)
+                    shutil.copy(f, target)
                     print(f"✅ Copied to: {target}")
                 else:
                     print(f"⏩ Skipped (already exists): {target}")
         else:
-            print(f"🚫 No image files found in: {img_path}")
+            print(f"❌ img_path missing: {img_path}")
 
     # Optional dummy image to confirm zip structure
     dummy_path = final_img_dir / "debug.txt"
