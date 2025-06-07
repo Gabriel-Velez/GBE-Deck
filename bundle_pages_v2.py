@@ -57,13 +57,22 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         merged_images.append(img)
                         uuid_set.add(img["uuid"])
 
-        # Merge img files
+        # Merge img files with debugging
         if img_path.exists():
-            for file in img_path.iterdir():
-                print(f"🖼️  Copying image: {file.name}")
+            print(f"📂 Found image folder: {img_path}")
+            img_files = list(img_path.iterdir())
+            if not img_files:
+                print("⚠️ Image folder is empty.")
+            for file in img_files:
+                print(f"🖼️ Found icon: {file.name}")
                 target = final_img_dir / file.name
                 if not target.exists():
                     shutil.copy(file, target)
+                    print(f"✅ Copied to: {target}")
+                else:
+                    print(f"⏩ Skipped (already exists): {target}")
+        else:
+            print(f"🚫 No img folder found in: {extract_dir}")
 
     # DEBUG: force a dummy image to prove zip logic works
     dummy_path = final_img_dir / "debug.txt"
