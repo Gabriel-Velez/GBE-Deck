@@ -57,7 +57,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         merged_images.append(img)
                         uuid_set.add(img["uuid"])
 
-        # Merge img files with debugging
+        # Merge img files
         if img_path.exists():
             print(f"📂 Found image folder: {img_path}")
             img_files = list(img_path.iterdir())
@@ -74,7 +74,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         else:
             print(f"🚫 No img folder found in: {extract_dir}")
 
-    # DEBUG: force a dummy image to prove zip logic works
+    # Optional: dummy image to test zip (remove later)
     dummy_path = final_img_dir / "debug.txt"
     dummy_path.write_text("image merge test")
 
@@ -98,17 +98,22 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
-    # FINAL CHECK: what’s in img/ before zipping
+    # DEBUG: what's in img/
     print(f"\n📁 Final img/ contents:")
     for p in final_img_dir.rglob("*"):
         print(f"   → {p.relative_to(tmpdir_path)}")
 
-    # Zip everything into final .tpz2
+    # ✅ Only zip: data.json, version.json, and flat img/
     with zipfile.ZipFile(output_file, 'w') as bundle:
-        for file in tmpdir_path.rglob("*"):
-            if file.is_file():
-                archive_path = file.relative_to(tmpdir_path)
-                print(f"📦 Adding file: {archive_path}")
-                bundle.write(file, arcname=str(archive_path))
+        for file in tmpdir_path.glob("*.*"):
+            archive_path = file.name
+            print(f"📦 Adding top-level file: {archive_path}")
+            bundle.write(file, arcname=archive_path)
+
+        for img_file in final_img_dir.rglob("*"):
+            if img_file.is_file():
+                archive_path = img_file.relative_to(tmpdir_path)
+                print(f"🧷 Adding image file: {archive_path}")
+                bundle.write(img_file, arcname=str(archive_path))
 
 print(f"\n✅ [DONE] Created bundle: {output_file.resolve()}")
