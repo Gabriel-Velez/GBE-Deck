@@ -86,13 +86,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
-    # Zip everything into final .tpz2
     with zipfile.ZipFile(output_file, 'w') as bundle:
         for file in tmpdir_path.glob("*.*"):
+            print(f"📦 Adding top-level file: {file.name}")
             bundle.write(file, arcname=file.name)
         
         for img_file in final_img_dir.rglob("*"):
-            relative_path = img_file.relative_to(tmpdir_path)
+            relative_path = img_file.relative_to(tmpdir_path / "img").with_name(f"img/{img_file.name}")
+            print(f"🧷 Adding image file: {relative_path}")
             bundle.write(img_file, arcname=str(relative_path))
 
 print(f"[DONE] Created bundle: {output_file.resolve()}")
