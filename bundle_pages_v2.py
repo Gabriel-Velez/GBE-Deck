@@ -96,13 +96,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
     # Zip everything into final .tpz2
     with zipfile.ZipFile(output_file, 'w') as bundle:
-        for file in tmpdir_path.glob("*.*"):
-            print(f"📦 Adding top-level file: {file.name}")
-            bundle.write(file, arcname=file.name)
-
-        for img_file in final_img_dir.rglob("*"):
-            relative_path = img_file.relative_to(tmpdir_path)
-            print(f"🧷 Adding image file: {relative_path}")
-            bundle.write(img_file, arcname=str(relative_path))
+        for file in tmpdir_path.rglob("*"):
+            if file.is_file():
+                archive_path = file.relative_to(tmpdir_path)
+                print(f"📦 Adding file: {archive_path}")
+                bundle.write(file, arcname=str(archive_path))
 
 print(f"\n✅ [DONE] Created bundle: {output_file.resolve()}")
