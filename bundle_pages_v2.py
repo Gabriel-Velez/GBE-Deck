@@ -90,7 +90,9 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with zipfile.ZipFile(output_file, 'w') as bundle:
         for file in tmpdir_path.glob("*.*"):
             bundle.write(file, arcname=file.name)
-        for img_file in final_img_dir.iterdir():
-            bundle.write(img_file, arcname=f"img/{img_file.name}")
+    
+        for img_file in final_img_dir.rglob("*"):
+            relative_path = img_file.relative_to(tmpdir_path)
+            bundle.write(img_file, arcname=str(relative_path))
 
 print(f"[DONE] Created bundle: {output_file.resolve()}")
