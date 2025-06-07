@@ -99,17 +99,18 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
-    # Final zip
+    # Final zip — only the top-level img/*, no recursion!
     print(f"\n📦 Creating bundle...")
     with zipfile.ZipFile(output_file, 'w') as bundle:
+        # Add data.json and version.json
         for file in tmpdir_path.glob("*.*"):
             archive_path = file.name
             print(f"📦 Adding: {archive_path}")
             bundle.write(file, arcname=archive_path)
-
-        for img_file in final_img_dir.rglob("*"):
+        # Only add files inside tmpdir_path/img (flat, not recursive)
+        for img_file in final_img_dir.glob("*"):
             if img_file.is_file():
-                archive_path = img_file.relative_to(tmpdir_path)
+                archive_path = Path("img") / img_file.name
                 print(f"🧷 Adding image: {archive_path}")
                 bundle.write(img_file, arcname=str(archive_path))
 
