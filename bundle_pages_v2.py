@@ -112,7 +112,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
         for img_file in final_img_dir.rglob("*"):
             if img_file.is_file():
-                archive_path = img_file.relative_to(tmpdir_path)
+                archive_path = Path("img") / img_file.name
                 print(f"🧷 Adding image file: {archive_path}")
                 bundle.write(img_file, arcname=str(archive_path))
 
