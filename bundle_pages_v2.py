@@ -43,10 +43,10 @@ with tempfile.TemporaryDirectory() as tmpdir:
         with zipfile.ZipFile(tpz_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
 
-        # Inspect contents
+        # Debug: List all files in extract_dir
         print(f"📂 Contents of {extract_dir}:")
-        for item in extract_dir.rglob("*"):
-            print(f"   → {item.relative_to(extract_dir)}")
+        for item in extract_dir.iterdir():
+            print(f"   → {item.name}")
 
         # Merge data.json
         data_path = extract_dir / "data.json"
@@ -60,24 +60,22 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         merged_images.append(img)
                         uuid_set.add(img["uuid"])
 
-        # Locate image files in extracted img/ folder
-        img_path = extract_dir / "img"
-        if img_path.exists():
-            print(f"📂 img_path exists: {img_path}")
-            img_files = [f for f in img_path.iterdir() if f.is_file() and f.suffix.lower() == ".png"]
-            print(f"Found {len(img_files)} files in {img_path}")
-            for f in img_files:
-                print(f"   -- Detected file: {f.name}")
-                target = final_img_dir / f.name
+        # Find all files named img*.png in extract_dir (no subfolder)
+        img_files = [f for f in extract_dir.glob("img*.png") if f.is_file() and f.suffix.lower() == ".png"]
+        if img_files:
+            print(f"📁 Found {len(img_files)} icon files named img*.png in: {extract_dir}")
+            for file in img_files:
+                print(f"🖼️ Found: {file.name}")
+                target = final_img_dir / file.name
                 if not target.exists():
-                    shutil.copy(f, target)
+                    shutil.copy(file, target)
                     print(f"✅ Copied to: {target}")
                 else:
                     print(f"⏩ Skipped (already exists): {target}")
         else:
-            print(f"❌ img_path missing: {img_path}")
+            print(f"🚫 No image files named img*.png found in: {extract_dir}")
 
-    # Optional dummy image to confirm zip structure
+    # Optional: dummy image to confirm zip structure
     dummy_path = final_img_dir / "debug.txt"
     dummy_path.write_text("image merge test")
 
