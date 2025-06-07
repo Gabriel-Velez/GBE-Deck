@@ -103,7 +103,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     for p in final_img_dir.rglob("*"):
         print(f"   → {p.relative_to(tmpdir_path)}")
 
-    # ✅ Only zip: data.json, version.json, and flat img/
+    # ✅ Final zip: only top-level + unified img/
     with zipfile.ZipFile(output_file, 'w') as bundle:
         for file in tmpdir_path.glob("*.*"):
             archive_path = file.name
@@ -112,7 +112,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
         for img_file in final_img_dir.rglob("*"):
             if img_file.is_file():
-                archive_path = Path("img") / img_file.name
+                archive_path = img_file.relative_to(tmpdir_path)
                 print(f"🧷 Adding image file: {archive_path}")
                 bundle.write(img_file, arcname=str(archive_path))
 
