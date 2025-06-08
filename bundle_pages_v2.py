@@ -60,7 +60,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         merged_images.append(img)
                         uuid_set.add(img["uuid"])
 
-        # --- Copy all PNGs at the page root ---
+        # Copy all PNGs at the root of extract_dir
         for file in extract_dir.glob("*.png"):
             if file.is_file():
                 print(f"🖼️ Copy root: {file.name}")
@@ -71,7 +71,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 else:
                     print(f"⏩ Skipped (already exists): {target}")
 
-        # --- Also copy all PNGs from extract_dir/img if exists ---
+        # Copy all PNGs from extract_dir/img if exists
         img_subfolder = extract_dir / "img"
         if img_subfolder.exists():
             for file in img_subfolder.glob("*.png"):
@@ -84,7 +84,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                     else:
                         print(f"⏩ Skipped (already exists): {target}")
 
-    # Optional: dummy image to confirm zip structure
+    # Optional: dummy image for quick test
     dummy_path = final_img_dir / "debug.txt"
     dummy_path.write_text("image merge test")
 
@@ -108,7 +108,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
     with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
         json.dump(version_data, f, indent=2)
 
-    # Final zip — only the top-level img/*, no recursion!
+    # Final zip — only the top-level img/*, not recursive!
     print(f"\n📦 Creating bundle...")
     with zipfile.ZipFile(output_file, 'w') as bundle:
         # Add data.json and version.json
