@@ -84,10 +84,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
                     else:
                         print(f"⏩ Skipped (already exists): {target}")
 
-    # Optional: dummy image for quick test
-    dummy_path = final_img_dir / "debug.txt"
-    dummy_path.write_text("image merge test")
-
     # Use version from last page (or fallback)
     version_data = {"version": "3.1.6"}
     if (extract_dir / "version.json").exists():
