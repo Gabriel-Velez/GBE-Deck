@@ -119,7 +119,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
         # Only add files inside tmpdir_path/img (flat, not recursive)
         for img_file in final_img_dir.glob("*"):
             if img_file.is_file():
-                archive_path = Path("img") / img_file.name
+                archive_path = img_file.name
                 print(f"🧷 Adding image: {archive_path}")
                 bundle.write(img_file, arcname=str(archive_path))
 
