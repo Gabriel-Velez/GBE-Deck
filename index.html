@@ -228,6 +228,8 @@
         });
       });
 
+      let triggerTime = null;
+
       document.getElementById("bundleButton").addEventListener("click", async () => {
         const selected = [...document.querySelectorAll("input[type='checkbox']:checked")].map(
           (cb) => cb.value
@@ -243,6 +245,8 @@
         status.textContent = "";
         spinner.style.display = "block";
 
+        triggerTime = Date.now();
+
         try {
           const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
             method: "POST",
@@ -254,7 +258,7 @@
 
           if (res.ok) {
             button.textContent = "✅ Sent! Building...";
-            pollForReleaseAndDownload();
+            pollForReleaseAndDownload(triggerTime);
           } else {
             button.textContent = "❌ Failed — see console";
             console.error(await res.text());
@@ -267,7 +271,7 @@
         }
       });
 
-      async function pollForReleaseAndDownload() {
+      async function pollForReleaseAndDownload(triggerTime) {
         const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
         const status = document.getElementById("statusMessage");
         const spinner = document.getElementById("spinner");
@@ -285,7 +289,9 @@
           const target = releases.find((r) => r.tag_name === "gbe-deck-bundle");
           if (target && target.assets.length > 0) {
             const asset = target.assets.find((a) => a.name === "GBE-Custom-Bundle.tpz2");
-            if (asset) {
+            const updatedAt = new Date(asset?.updated_at || 0).getTime();
+
+            if (asset && updatedAt > triggerTime) {
               clearInterval(interval);
               status.textContent = "✅ Bundle ready! Downloading...";
               spinner.style.display = "none";
@@ -309,7 +315,8 @@
             }
           }
 
-          if (attempts > 12) {
+          if (attempts > 18) {
+            // ~90 seconds
             clearInterval(interval);
             status.textContent = "❌ Timeout. Try again in a minute.";
             spinner.style.display = "none";
