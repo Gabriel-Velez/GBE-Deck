@@ -60,20 +60,29 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         merged_images.append(img)
                         uuid_set.add(img["uuid"])
 
-        # Find all files named img*.png in extract_dir (no subfolder)
-        img_files = [f for f in extract_dir.glob("img*.png") if f.is_file() and f.suffix.lower() == ".png"]
-        if img_files:
-            print(f"📁 Found {len(img_files)} icon files named img*.png in: {extract_dir}")
-            for file in img_files:
-                print(f"🖼️ Found: {file.name}")
+        # --- Copy all PNGs at the page root ---
+        for file in extract_dir.glob("*.png"):
+            if file.is_file():
+                print(f"🖼️ Copy root: {file.name}")
                 target = final_img_dir / file.name
                 if not target.exists():
                     shutil.copy(file, target)
                     print(f"✅ Copied to: {target}")
                 else:
                     print(f"⏩ Skipped (already exists): {target}")
-        else:
-            print(f"🚫 No image files named img*.png found in: {extract_dir}")
+
+        # --- Also copy all PNGs from extract_dir/img if exists ---
+        img_subfolder = extract_dir / "img"
+        if img_subfolder.exists():
+            for file in img_subfolder.glob("*.png"):
+                if file.is_file():
+                    print(f"🖼️ Copy subfolder: {file.name}")
+                    target = final_img_dir / file.name
+                    if not target.exists():
+                        shutil.copy(file, target)
+                        print(f"✅ Copied to: {target}")
+                    else:
+                        print(f"⏩ Skipped (already exists): {target}")
 
     # Optional: dummy image to confirm zip structure
     dummy_path = final_img_dir / "debug.txt"
