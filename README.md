@@ -227,21 +227,21 @@ YouTube, Netflix, Twitch, Gmail, Google Docs Sheets and Slides, GitHub, LinkedIn
 <table>
   <tr>
     <td align="center">
-      <img src="Pages/Button List/Button List 1.png" alt="Button List 1" /><br/>
+      <img src="Pages/Templates/Button Lists/Button List 1.png" alt="Button List 1" /><br/>
       <strong>Button List 1</strong>
     </td>
     <td align="center">
-      <img src="Pages/Button List/Button List 2.png" alt="Button List 2" /><br/>
+      <img src="Pages/Templates/Button Lists/Button List 2.png" alt="Button List 2" /><br/>
       <strong>Button List 2</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="Pages/Button List/Button List 3.png" alt="Button List 3" /><br/>
+      <img src="Pages/Templates/Button Lists/Button List 3.png" alt="Button List 3" /><br/>
       <strong>Button List 3</strong>
     </td>
     <td align="center">
-      <img src="Pages/Button List/Button List 4.png" alt="Button List 4" /><br/>
+      <img src="Pages/Templates/Button Lists/Button List 4.png" alt="Button List 4" /><br/>
       <strong>Button List 4</strong>
     </td>
   </tr>
