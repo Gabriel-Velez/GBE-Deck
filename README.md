@@ -152,41 +152,41 @@ GBE-DECK/
 <table>
   <tr>
     <td align="center">
-      <img src="Pages/Programs/Programs.png" alt="Programs" /><br/>
+      <img src="Pages/General/Programs/Programs.png" alt="Programs" /><br/>
       <strong>Programs</strong>
     </td>
     <td align="center">
-      <img src="Pages/Web Browser/Web-Browser.png" alt="Web Browser" /><br/>
+      <img src="Pages/Web Browser/Web Browser Controls/Web-Browser.png" alt="Web Browser" /><br/>
       <strong>Web Browser</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="Pages/Discord/Discord.png" alt="Discord" /><br/>
+      <img src="Pages/Call Controls/Discord/Discord.png" alt="Discord" /><br/>
       <strong>Discord</strong>
     </td>
     <td align="center">
-      <img src="Pages/File Explorer/File-Explorer.png" alt="File Explorer" /><br/>
+      <img src="Pages/General/File Explorer/File-Explorer.png" alt="File Explorer" /><br/>
       <strong>File Explorer</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="Pages/Games/Games.png" alt="Games" /><br/>
+      <img src="Pages/General/Games/Games.png" alt="Games" /><br/>
       <strong>Games</strong>
     </td>
     <td align="center">
-      <img src="Pages/Quick Controls/Quick-Controls.png" alt="Quick Controls" /><br/>
+      <img src="Pages/General/Quick Controls/Quick-Controls.png" alt="Quick Controls" /><br/>
       <strong>Quick Controls</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="Pages/Spotify/Spotify.png" alt="Spotify" /><br/>
+      <img src="Pages/Music/Spotify/Spotify.png" alt="Spotify" /><br/>
       <strong>Spotify</strong>
     </td>
     <td align="center">
-      <img src="Pages/Youtube/YouTube.png" alt="Youtube" /><br/>
+      <img src="Pages/Web Browser/Youtube/YouTube.png" alt="Youtube" /><br/>
       <strong>YouTube</strong>
     </td>
   </tr>
