@@ -1,10 +1,31 @@
 {
   "pages": [
+    "Web Browser Controls",
+    "YouTube",
+    "Coding Tools (Menu)",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Python",
+    "Regex",
+    "SQL",
+    "GIT",
+    "Terminal",
+    "Markdown",
+    "Adobe Tools (Menu)",
+    "Photoshop Tools",
+    "Illustrator Tools",
+    "Discord",
+    "Zoom",
+    "Templates",
+    "Button Lists",
+    "Spotify",
+    "YouTube Music",
     "Programs",
     "Games",
     "File Explorer",
     "Main Menu",
     "Quick Controls"
   ],
-  "timestamp": 1750205534752
+  "timestamp": 1750281809995
 }
