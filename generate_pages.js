@@ -34,10 +34,11 @@ sortedCategories.forEach((category) => {
     // Attach the relative Pages.tpz2 path
     const file = `${category}/${page}/Pages.tpz2`;
 
-    // Ensure screenshots have relative paths
+    // ✅ NEW: Use raw GitHub URL for screenshot(s)
+    const GITHUB_RAW_BASE = "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/Pages/";
     const screenshot = Array.isArray(meta.screenshot)
-      ? meta.screenshot.map((s) => `${category}/${page}/${s}`)
-      : `${category}/${page}/${meta.screenshot}`;
+      ? meta.screenshot.map((s) => `${GITHUB_RAW_BASE}${category}/${page}/${s}`)
+      : `${GITHUB_RAW_BASE}${category}/${page}/${meta.screenshot}`;
 
     // Also auto-fix dependencies if needed (optional)
     const dependencies = meta.dependencies || [];
