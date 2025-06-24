@@ -7,7 +7,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open File Explorer with navigation shortcuts and quick actions. Create new folders, open new windows, rename files, and jump to PC, Downloads, Documents, and drives.",
-        "screenshot": "General/File Explorer/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/File%20Explorer/screenshot.png",
         "dependencies": []
       }
     },
@@ -18,7 +18,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open Steam, other launchers, and access your favorite games and shortcuts. Quickly launch games directly from the Programs page.",
-        "screenshot": "General/Games/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Games/screenshot.png",
         "dependencies": []
       }
     },
@@ -29,7 +29,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Central hub for navigating all pages. Open it from any page by tapping the three vertical dots in the bottom left corner.",
-        "screenshot": "General/Main Menu/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Main%20Menu/screenshot.png",
         "dependencies": []
       }
     },
@@ -40,7 +40,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Default launcher that opens automatically when no other page is selected. Quickly open your most-used programs with a single tap.",
-        "screenshot": "General/Programs/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Programs/screenshot.png",
         "dependencies": []
       }
     },
@@ -51,7 +51,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Access essential system settings from any page. Adjust input and output volume sliders and open system tools like Wi-Fi, Bluetooth, display settings, Task Manager, Volume Mixer, Calculator, Timer, and Snipping Tool.",
-        "screenshot": "General/Quick Controls/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Quick%20Controls/screenshot.png",
         "dependencies": [
           {
             "type": "file",
@@ -72,10 +72,10 @@
         "version": "1.0",
         "description": "The Button List pages are designed as modular, copy-paste-ready layouts containing popular apps, creative tools, games, and web services.",
         "screenshot": [
-          "Templates/Button Lists/screenshot1.png",
-          "Templates/Button Lists/screenshot2.png",
-          "Templates/Button Lists/screenshot3.png",
-          "Templates/Button Lists/screenshot4.png"
+          "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Templates/Button%20Lists/screenshot1.png",
+          "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Templates/Button%20Lists/screenshot2.png",
+          "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Templates/Button%20Lists/screenshot3.png",
+          "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Templates/Button%20Lists/screenshot4.png"
         ],
         "dependencies": []
       }
@@ -87,7 +87,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Access a collection of prebuilt templates for common actions and layouts. Speed up repetitive tasks with reusable structures.",
-        "screenshot": "Templates/Templates/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Templates/Templates/screenshot.png",
         "dependencies": []
       }
     }
@@ -100,7 +100,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open Google Chrome with touch controls for New Tab, New Window, Back, Refresh, Incognito, and Close Tab. Includes quick shortcuts for popular sites like YouTube, Netflix, Reddit, Amazon, and Twitch.",
-        "screenshot": "Web Browser/Web Browser Controls/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Web%20Browser/Web%20Browser%20Controls/screenshot.png",
         "dependencies": []
       }
     },
@@ -111,7 +111,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open YouTube in a web app or tab with built-in playback controls: play/pause, skip, rewind, fast-forward, adjust volume, or mute instantly for smooth watching.",
-        "screenshot": "Web Browser/Youtube/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Web%20Browser/Youtube/screenshot.png",
         "dependencies": []
       }
     }
@@ -124,7 +124,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open Spotify with live album art and song info powered by a plugin. Control playback: play/pause, skip, rewind, adjust volume, mute, shuffle, repeat, and like songs.",
-        "screenshot": "Music/Spotify/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Music/Spotify/screenshot.png",
         "dependencies": [
           {
             "type": "plugin",
@@ -142,7 +142,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open YouTube Music with an easy playback panel. Control play, pause, skip, rewind, fast-forward, adjust volume, and mute without leaving your workflow.",
-        "screenshot": "Music/Youtube Music/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Music/Youtube%20Music/screenshot.png",
         "dependencies": []
       }
     }
@@ -155,7 +155,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Switch between Photoshop and Illustrator tools from one panel. Access common actions and workflows for faster design work.",
-        "screenshot": "Adobe Tools/Adobe Tools (Menu)/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Adobe%20Tools/Adobe%20Tools%20(Menu)/screenshot.png",
         "dependencies": []
       }
     },
@@ -166,7 +166,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Switch between commonly used Illustrator tools for drawing, selecting, transforming, and editing vector graphics efficiently.",
-        "screenshot": "Adobe Tools/Illustrator Tools/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Adobe%20Tools/Illustrator%20Tools/screenshot.png",
         "dependencies": []
       }
     },
@@ -178,8 +178,8 @@
         "version": "1.0",
         "description": "Access a curated set of Photoshop tools and frequent functions to streamline editing and retouching tasks.",
         "screenshot": [
-          "Adobe Tools/Photoshop Tools/screenshot1.png",
-          "Adobe Tools/Photoshop Tools/screenshot2.png"
+          "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Adobe%20Tools/Photoshop%20Tools/screenshot1.png",
+          "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Adobe%20Tools/Photoshop%20Tools/screenshot2.png"
         ],
         "dependencies": []
       }
@@ -193,7 +193,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open Discord with plugin-enabled controls for mute, deafen, and hanging up. Keeps your app and Discord audio states synced in real time.",
-        "screenshot": "Call Controls/Discord/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Call%20Controls/Discord/screenshot.png",
         "dependencies": [
           {
             "type": "plugin",
@@ -211,7 +211,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open Zoom with one-tap meeting controls: mute/unmute mic, toggle camera, open chat, change audience view, hang up, or share your screen easily.",
-        "screenshot": "Call Controls/Zoom/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Call%20Controls/Zoom/screenshot.png",
         "dependencies": []
       }
     }
@@ -224,7 +224,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Open VS Code and navigate to snippet pages for all major coding languages. Quickly access HTML, CSS, JavaScript, Python, Regex, SQL, GIT, Terminal, and Markdown templates.",
-        "screenshot": "Coding Tools/Coding Tools (Menu)/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/Coding%20Tools%20(Menu)/screenshot.png",
         "dependencies": []
       }
     },
@@ -235,7 +235,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Access CSS property snippets for layout (Flexbox, Grid), spacing (margin, padding), styling (color, background), and positioning (display, z-index, position).",
-        "screenshot": "Coding Tools/CSS/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/CSS/screenshot.png",
         "dependencies": []
       }
     },
@@ -246,7 +246,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Access essential Git commands instantly: commit, push, pull, check status, create and switch branches, clone repos, and stash changes.",
-        "screenshot": "Coding Tools/GIT/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/GIT/screenshot.png",
         "dependencies": []
       }
     },
@@ -257,7 +257,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Insert commonly used HTML tags and structures quickly: divs, classes, headings, paragraphs, links, buttons, script tags, and boilerplates.",
-        "screenshot": "Coding Tools/HTML/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/HTML/screenshot.png",
         "dependencies": []
       }
     },
@@ -268,7 +268,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Quick snippets for JavaScript: declarations, loops, conditionals, classes, methods, console logs, and flow control blocks for fast coding.",
-        "screenshot": "Coding Tools/JavaScript/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/JavaScript/screenshot.png",
         "dependencies": []
       }
     },
@@ -279,7 +279,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Insert Markdown syntax for headers, bold and italic text, links, images, inline code, code blocks, and dynamic lists or tables for clean documentation.",
-        "screenshot": "Coding Tools/Markdown/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/Markdown/screenshot.png",
         "dependencies": []
       }
     },
@@ -290,7 +290,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Insert Python code blocks for print statements, variables, functions, loops, if/else logic, imports, and common built-in functions.",
-        "screenshot": "Coding Tools/Python/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/Python/screenshot.png",
         "dependencies": []
       }
     },
@@ -301,7 +301,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Quick access ready-to-use Regex patterns: digits, word characters, whitespace, boundaries, groups, and advanced lookahead/lookbehind expressions.",
-        "screenshot": "Coding Tools/Regex/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/Regex/screenshot.png",
         "dependencies": []
       }
     },
@@ -312,7 +312,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Use quick SQL query templates for SELECT, INSERT, UPDATE, DELETE, WHERE, JOIN, ORDER BY, and table creation or modification.",
-        "screenshot": "Coding Tools/SQL/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/SQL/screenshot.png",
         "dependencies": []
       }
     },
@@ -323,7 +323,7 @@
         "author": "Gabe",
         "version": "1.0",
         "description": "Execute common shell commands: list files, navigate directories, create/remove folders, clear the terminal, print the current path, and run scripts.",
-        "screenshot": "Coding Tools/Terminal/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Coding%20Tools/Terminal/screenshot.png",
         "dependencies": []
       }
     }

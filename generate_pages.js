@@ -9,7 +9,7 @@ const allCategories = fs
   .readdirSync(PAGES_DIR)
   .filter((folder) => fs.statSync(path.join(PAGES_DIR, folder)).isDirectory());
 
-// 2️⃣ Custom priority: General first, Templates second, then specific, then alphabetical
+// 2️⃣ Custom priority order
 const priority = ["General", "Templates", "Web Browser", "Music"];
 const sortedCategories = [
   ...priority,
@@ -18,7 +18,7 @@ const sortedCategories = [
 
 const output = {};
 
-// 3️⃣ For each category, build its pages list
+// 3️⃣ Build each category’s pages
 sortedCategories.forEach((category) => {
   const categoryPath = path.join(PAGES_DIR, category);
   const pages = fs
@@ -27,20 +27,22 @@ sortedCategories.forEach((category) => {
 
   output[category] = pages.map((page) => {
     const pagePath = path.join(categoryPath, page);
-
-    // Read Meta.json for page metadata
     const meta = JSON.parse(fs.readFileSync(path.join(pagePath, "Meta.json"), "utf-8"));
 
-    // Build the file path for .tpz2 file
+    // Build relative file path
     const file = `${category}/${page}/Pages.tpz2`;
 
-    // ✅ Build full GitHub Raw URL(s) for screenshots
-    const GITHUB_RAW_BASE = "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/Pages/";
-    const screenshot = Array.isArray(meta.screenshot)
-      ? meta.screenshot.map((s) => `${GITHUB_RAW_BASE}${category}/${page}/${s}`)
-      : `${GITHUB_RAW_BASE}${category}/${page}/${meta.screenshot}`;
+    // ✅ Encode the full raw GitHub URL with `refs/heads/main` and encoded paths
+    const GITHUB_RAW_BASE =
+      "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/";
+    const encode = (str) => encodeURIComponent(str).replace(/%2F/g, "/");
 
-    // Pass through any dependencies or default to empty array
+    const screenshot = Array.isArray(meta.screenshot)
+      ? meta.screenshot.map(
+          (s) => `${GITHUB_RAW_BASE}${encode(category)}/${encode(page)}/${encode(s)}`
+        )
+      : `${GITHUB_RAW_BASE}${encode(category)}/${encode(page)}/${encode(meta.screenshot)}`;
+
     const dependencies = meta.dependencies || [];
 
     return {
@@ -54,6 +56,6 @@ sortedCategories.forEach((category) => {
   });
 });
 
-// 4️⃣ Write out pages.json nicely formatted
+// 4️⃣ Write pages.json
 fs.writeFileSync(OUTPUT, JSON.stringify(output, null, 2));
 console.log(`✅ pages.json generated at ${OUTPUT}`);
