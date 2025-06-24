@@ -1,0 +1,8 @@
+{
+  "name": "Zoom",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Open Zoom with one-tap meeting controls: mute/unmute mic, toggle camera, open chat, change audience view, hang up, or share your screen easily.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Templates",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Access a collection of prebuilt templates for common actions and layouts. Speed up repetitive tasks with reusable structures.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

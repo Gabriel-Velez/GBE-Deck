@@ -1,0 +1,8 @@
+{
+  "name": "HTML",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Insert commonly used HTML tags and structures quickly: divs, classes, headings, paragraphs, links, buttons, script tags, and boilerplates.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Youtube",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Open YouTube in a web app or tab with built-in playback controls: play/pause, skip, rewind, fast-forward, adjust volume, or mute instantly for smooth watching.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

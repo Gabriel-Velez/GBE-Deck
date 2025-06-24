@@ -1,0 +1,8 @@
+{
+  "name": "Photoshop Tools",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Access a curated set of Photoshop tools and frequent functions to streamline editing and retouching tasks.",
+  "screenshot": ["screenshot1.png", "screenshot2.png"],
+  "dependencies": []
+}

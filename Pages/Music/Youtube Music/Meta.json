@@ -1,0 +1,8 @@
+{
+  "name": "Youtube Music",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Open YouTube Music with an easy playback panel. Control play, pause, skip, rewind, fast-forward, adjust volume, and mute without leaving your workflow.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

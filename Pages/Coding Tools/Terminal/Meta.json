@@ -1,0 +1,8 @@
+{
+  "name": "Terminal",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Execute common shell commands: list files, navigate directories, create/remove folders, clear the terminal, print the current path, and run scripts.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

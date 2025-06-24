@@ -1,0 +1,15 @@
+{
+  "name": "Discord",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Open Discord with plugin-enabled controls for mute, deafen, and hanging up. Keeps your app and Discord audio states synced in real time.",
+  "screenshot": "screenshot.png",
+  "dependencies": [
+    {
+      "type": "plugin",
+      "name": "Touch Portal Discord Plugin",
+      "description": "Download and Install this plugin for Discord Functionality",
+      "link": "https://github.com/spdermn02/TouchPortal_Discord_Plugin"
+    }
+  ]
+}

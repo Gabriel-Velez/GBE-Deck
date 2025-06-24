@@ -1,0 +1,8 @@
+{
+  "name": "Coding Tools (Menu)",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Open VS Code and navigate to snippet pages for all major coding languages. Quickly access HTML, CSS, JavaScript, Python, Regex, SQL, GIT, Terminal, and Markdown templates.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

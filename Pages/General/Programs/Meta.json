@@ -1,0 +1,8 @@
+{
+  "name": "Programs",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Default launcher that opens automatically when no other page is selected. Quickly open your most-used programs with a single tap.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

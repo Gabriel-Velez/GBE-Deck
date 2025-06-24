@@ -1,0 +1,8 @@
+{
+  "name": "GIT",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Access essential Git commands instantly: commit, push, pull, check status, create and switch branches, clone repos, and stash changes.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

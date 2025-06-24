@@ -1,0 +1,8 @@
+{
+  "name": "Games",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Open Steam, other launchers, and access your favorite games and shortcuts. Quickly launch games directly from the Programs page.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

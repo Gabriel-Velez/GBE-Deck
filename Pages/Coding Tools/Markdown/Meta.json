@@ -1,0 +1,8 @@
+{
+  "name": "Markdown",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Insert Markdown syntax for headers, bold and italic text, links, images, inline code, code blocks, and dynamic lists or tables for clean documentation.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

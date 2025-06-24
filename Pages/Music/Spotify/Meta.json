@@ -1,0 +1,15 @@
+{
+  "name": "Spotify",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Open Spotify with live album art and song info powered by a plugin. Control playback: play/pause, skip, rewind, adjust volume, mute, shuffle, repeat, and like songs.",
+  "screenshot": "screenshot.png",
+  "dependencies": [
+    {
+      "type": "plugin",
+      "name": "Touch Portal Spotfiy Plugin",
+      "description": "Download and Install this plugin for Spotify Functionality",
+      "link": "https://www.christophecvb.com/touch-portal/plugins/spotify"
+    }
+  ]
+}

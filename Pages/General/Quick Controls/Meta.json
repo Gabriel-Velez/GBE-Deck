@@ -1,0 +1,15 @@
+{
+  "name": "Quick Controls",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Access essential system settings from any page. Adjust input and output volume sliders and open system tools like Wi-Fi, Bluetooth, display settings, Task Manager, Volume Mixer, Calculator, Timer, and Snipping Tool.",
+  "screenshot": "screenshot.png",
+  "dependencies": [
+    {
+      "type": "file",
+      "name": "Quick Controls Shortcuts Zip",
+      "description": "Unzip these Files in your Documents folder for full functionality",
+      "link": "https://github.com/Gabriel-Velez/GBE-Deck/raw/main/Pages/General/Quick%20Controls/Shortcuts%20(put%20this%20in%20documents).zip?raw=true"
+    }
+  ]
+}

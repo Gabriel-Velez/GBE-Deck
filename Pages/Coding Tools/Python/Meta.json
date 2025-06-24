@@ -1,0 +1,8 @@
+{
+  "name": "Python",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Insert Python code blocks for print statements, variables, functions, loops, if/else logic, imports, and common built-in functions.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

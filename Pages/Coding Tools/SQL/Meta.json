@@ -1,0 +1,8 @@
+{
+  "name": "SQL",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Use quick SQL query templates for SELECT, INSERT, UPDATE, DELETE, WHERE, JOIN, ORDER BY, and table creation or modification.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

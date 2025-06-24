@@ -1,0 +1,8 @@
+{
+  "name": "JavaScript",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Quick snippets for JavaScript: declarations, loops, conditionals, classes, methods, console logs, and flow control blocks for fast coding.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

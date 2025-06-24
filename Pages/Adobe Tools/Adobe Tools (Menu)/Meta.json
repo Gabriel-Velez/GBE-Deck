@@ -1,0 +1,8 @@
+{
+  "name": "Adobe Tools (Menu)",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Switch between Photoshop and Illustrator tools from one panel. Access common actions and workflows for faster design work.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

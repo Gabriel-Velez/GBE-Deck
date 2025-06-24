@@ -1,0 +1,8 @@
+{
+  "name": "CSS",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Access CSS property snippets for layout (Flexbox, Grid), spacing (margin, padding), styling (color, background), and positioning (display, z-index, position).",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

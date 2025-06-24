@@ -1,0 +1,8 @@
+{
+  "name": "Illustrator Tools",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Switch between commonly used Illustrator tools for drawing, selecting, transforming, and editing vector graphics efficiently.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}

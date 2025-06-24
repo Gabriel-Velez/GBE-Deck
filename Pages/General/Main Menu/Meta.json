@@ -1,0 +1,8 @@
+{
+  "name": "Main Menu",
+  "author": "Gabe",
+  "version": "1.0",
+  "description": "Central hub for navigating all pages. Open it from any page by tapping the three vertical dots in the bottom left corner.",
+  "screenshot": "screenshot.png",
+  "dependencies": []
+}
