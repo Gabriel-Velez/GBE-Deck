@@ -4,8 +4,29 @@
     "Games",
     "Main Menu",
     "Programs",
-    "Quick Controls"
+    "Quick Controls",
+    "Button Lists",
+    "Templates",
+    "Web Browser Controls",
+    "Youtube",
+    "Spotify",
+    "Youtube Music",
+    "Adobe Tools (Menu)",
+    "Illustrator Tools",
+    "Photoshop Tools",
+    "Discord",
+    "Zoom",
+    "CSS",
+    "Coding Tools (Menu)",
+    "GIT",
+    "HTML",
+    "JavaScript",
+    "Markdown",
+    "Python",
+    "Regex",
+    "SQL",
+    "Terminal"
   ],
-  "timestamp": 1750876019304,
-  "bundleId": "36jl9dps"
+  "timestamp": 1750876164000,
+  "bundleId": "17tmnwiw"
 }
