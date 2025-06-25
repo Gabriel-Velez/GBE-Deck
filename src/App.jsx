@@ -83,7 +83,7 @@ function App() {
     let attempts = 0;
     const maxAttempts = 18;
 
-    const expectedFilename = `GBE-Bundle-${bundleId}.tpz2`;
+    const expectedFilename = `GBE-Custom-Bundle.tpz2`;
 
     const interval = setInterval(async () => {
       attempts++;
