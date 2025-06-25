@@ -363,7 +363,7 @@ body {
     width: 100%;
     background-color: var(--bg-panel);
     z-index: 10;
-    transform: translateY(calc(100% - 10rem - env(safe-area-inset-bottom)));
+    transform: translateY(calc(100% - 10rem));
     transition: transform 0.3s ease;
     overflow: hidden;
   }
