@@ -12,7 +12,6 @@ function App() {
   const [statusMessage, setStatusMessage] = useState("");
   const [progress, setProgress] = useState(0);
 
-  // === Selection toggles ===
   const togglePage = (pageName) => {
     setSelectedPages((prev) =>
       prev.includes(pageName) ? prev.filter((p) => p !== pageName) : [...prev, pageName]
@@ -42,11 +41,10 @@ function App() {
   };
 
   const handleGlobalToggle = () => {
+    const visiblePageNames = filteredData.flatMap(([_, pages]) => pages.map((p) => p.meta.name));
     if (areAllVisiblePagesSelected()) {
-      const visiblePageNames = filteredData.flatMap(([_, pages]) => pages.map((p) => p.meta.name));
       setSelectedPages((prev) => prev.filter((p) => !visiblePageNames.includes(p)));
     } else {
-      const visiblePageNames = filteredData.flatMap(([_, pages]) => pages.map((p) => p.meta.name));
       setSelectedPages((prev) => Array.from(new Set([...prev, ...visiblePageNames])));
     }
   };
@@ -54,6 +52,7 @@ function App() {
   const handleDownload = async () => {
     setIsBundling(true);
     setStatusMessage("Triggering bundle...");
+    setProgress(5);
 
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
@@ -66,32 +65,64 @@ function App() {
         throw new Error(`Worker failed: ${await res.text()}`);
       }
 
-      const { downloadUrl } = await res.json();
+      const triggerTime = Date.now();
+      setStatusMessage("⏳ Bundling...");
+      setProgress(10);
 
-      if (!downloadUrl) {
-        throw new Error("No download URL returned from Worker");
-      }
-
-      setStatusMessage("Downloading...");
-
-      const blob = await (await fetch(downloadUrl)).blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "GBE-Custom-Bundle.tpz2";
-      a.click();
-
-      setStatusMessage("✅ Download complete!");
+      pollForReleaseAndDownload(triggerTime);
     } catch (error) {
       console.error("Download error:", error);
-      setStatusMessage("❌ Timeout. Try again.");
-    } finally {
+      setStatusMessage("❌ Failed to trigger bundle");
       setIsBundling(false);
       setProgress(0);
     }
   };
 
-  // === Get filtered data ===
+  const pollForReleaseAndDownload = (triggerTime) => {
+    const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
+    let attempts = 0;
+    const maxAttempts = 18;
+
+    const interval = setInterval(async () => {
+      attempts++;
+
+      try {
+        const res = await fetch(url);
+        const releases = await res.json();
+        const target = releases.find((r) => r.tag_name === "GBE-Custom-Bundle");
+
+        if (target && target.assets.length > 0) {
+          const asset = target.assets.find((a) => a.name === "GBE-Custom-Bundle.tpz2");
+          const updatedAt = new Date(asset?.updated_at || 0).getTime();
+
+          if (asset && updatedAt > triggerTime) {
+            clearInterval(interval);
+            setStatusMessage("✅ Bundle ready! Downloading...");
+            setIsBundling(false);
+            setProgress(100);
+
+            const link = document.createElement("a");
+            link.href = asset.browser_download_url;
+            link.download = asset.name;
+            link.click();
+            return;
+          }
+        }
+
+        setProgress(Math.min((attempts / maxAttempts) * 95, 95));
+
+        if (attempts >= maxAttempts) {
+          clearInterval(interval);
+          setStatusMessage("❌ Timeout. Try again.");
+          setIsBundling(false);
+          setProgress(0);
+        }
+      } catch (err) {
+        console.error("Polling error:", err);
+      }
+    }, 5000);
+  };
+
   const filteredData = Object.entries(data).map(([category, pages]) => {
     const filteredPages = pages.filter(
       (p) =>
@@ -101,7 +132,6 @@ function App() {
     return [category, filteredPages];
   });
 
-  // === Unique dependencies across selected pages ===
   const selectedObjects = Object.values(data)
     .flat()
     .flatMap((p) => p)
