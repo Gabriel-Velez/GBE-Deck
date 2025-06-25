@@ -9,7 +9,7 @@ export default function InfoPanel({
   isBundling,
   statusMessage,
   uniqueDependencies,
-  progress, // ✅ your fancy bar!
+  progress,
 }) {
   const selectedCount = selectedPages.length;
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
@@ -53,7 +53,7 @@ export default function InfoPanel({
         {screenshots.length > 0 && (
           <div className='carousel'>
             <img
-              src={`/Pages/${screenshots[currentScreenshot]}`}
+              src={screenshots[currentScreenshot]} // ✅ use raw URL directly!
               alt={`Screenshot ${currentScreenshot + 1}`}
               className='screenshot-image'
             />
@@ -103,7 +103,6 @@ export default function InfoPanel({
             {isBundling ? "Bundling..." : "Download"}
           </button>
 
-          {/* ✅ Fancy animated progress bar */}
           {isBundling && (
             <div className='progress-container'>
               <div className='progress-bar' style={{ width: `${progress}%` }}></div>
