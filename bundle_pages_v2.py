@@ -6,12 +6,15 @@ from pathlib import Path
 
 # Paths
 pages_root = Path("Pages")
-output_file = Path("GBE-Custom-Bundle.tpz2")
 selection_file = Path("bundle-trigger/selected-pages.json")
 
-# Load selected page names
+# Load selected page names and bundleId
 with open(selection_file, "r") as f:
-    selected = json.load(f).get("pages", [])
+    selection_data = json.load(f)
+    selected = selection_data.get("pages", [])
+    bundle_id = selection_data.get("bundleId", "fallback")
+
+output_file = Path(f"GBE-Bundle-{bundle_id}.tpz2")
 
 # Merged data holders
 merged_buttons = []
@@ -29,13 +32,11 @@ with tempfile.TemporaryDirectory() as tmpdir:
         print(f"🔍 Looking for: Pages/{name}/Pages.tpz2")
 
         tpz_path = pages_root / name / "Pages.tpz2"
-
-        if tpz_path.exists():
-            print(f"✅ Found: {tpz_path}")
-        else:
+        if not tpz_path.exists():
             print(f"❌ Not found: {tpz_path} — skipping")
             continue
 
+        print(f"✅ Found: {tpz_path}")
         extract_dir = tmpdir_path / name
         with zipfile.ZipFile(tpz_path, 'r') as zip_ref:
             zip_ref.extractall(extract_dir)
@@ -57,25 +58,23 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
         for file in extract_dir.glob("*.png"):
             if file.is_file():
-                print(f"🖼️ Copy root: {file.name}")
                 target = final_img_dir / file.name
                 if not target.exists():
                     shutil.copy(file, target)
-                    print(f"✅ Copied to: {target}")
+                    print(f"✅ Copied root image: {file.name}")
                 else:
-                    print(f"⏩ Skipped (already exists): {target}")
+                    print(f"⏩ Skipped duplicate root: {file.name}")
 
         img_subfolder = extract_dir / "img"
         if img_subfolder.exists():
             for file in img_subfolder.glob("*.png"):
                 if file.is_file():
-                    print(f"🖼️ Copy subfolder: {file.name}")
                     target = final_img_dir / file.name
                     if not target.exists():
                         shutil.copy(file, target)
-                        print(f"✅ Copied to: {target}")
+                        print(f"✅ Copied nested image: {file.name}")
                     else:
-                        print(f"⏩ Skipped (already exists): {target}")
+                        print(f"⏩ Skipped duplicate nested: {file.name}")
 
     version_data = {"version": "3.1.6"}
     if merged_pages:
@@ -99,17 +98,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
         with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
             json.dump(version_data, f, indent=2)
 
-        print(f"\n📦 Creating bundle...")
+        print(f"\n📦 Creating bundle: {output_file}")
         with zipfile.ZipFile(output_file, 'w') as bundle:
             for file in tmpdir_path.glob("*.*"):
-                archive_path = file.name
-                print(f"📦 Adding: {archive_path}")
-                bundle.write(file, arcname=archive_path)
+                bundle.write(file, arcname=file.name)
+                print(f"📦 Added file: {file.name}")
 
             for img_file in final_img_dir.glob("*"):
-                if img_file.is_file():
-                    archive_path = img_file.name
-                    print(f"🧷 Adding image: {archive_path}")
-                    bundle.write(img_file, arcname=str(archive_path))
+                bundle.write(img_file, arcname=img_file.name)
+                print(f"🧷 Added image: {img_file.name}")
 
 print(f"\n✅ [DONE] Created bundle: {output_file.resolve()}")

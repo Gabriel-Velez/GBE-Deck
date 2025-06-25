@@ -54,21 +54,22 @@ function App() {
     setStatusMessage("Triggering bundle...");
     setProgress(5);
 
+    const bundleId = Math.random().toString(36).slice(2, 10); // 8-char random ID
+
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pages: selectedPages }),
+        body: JSON.stringify({ pages: selectedPages, bundleId }),
       });
 
       if (!res.ok) {
         throw new Error(`Worker failed: ${await res.text()}`);
       }
 
-      const triggerTime = Date.now();
       setStatusMessage("⏳ Bundling...");
       setProgress(10);
-      pollForReleaseAndDownload(triggerTime);
+      pollForReleaseAndDownload(bundleId);
     } catch (error) {
       console.error("Download error:", error);
       setStatusMessage("❌ Failed to trigger bundle");
@@ -77,10 +78,12 @@ function App() {
     }
   };
 
-  const pollForReleaseAndDownload = (triggerTime) => {
+  const pollForReleaseAndDownload = (bundleId) => {
     const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
     let attempts = 0;
     const maxAttempts = 18;
+
+    const expectedFilename = `GBE-Bundle-${bundleId}.tpz2`;
 
     const interval = setInterval(async () => {
       attempts++;
@@ -88,13 +91,12 @@ function App() {
       try {
         const res = await fetch(url);
         const releases = await res.json();
-        const target = releases.find((r) => r.tag_name === "GBE-Custom-Bundle");
+        const target = releases.find((r) => r.tag_name === "gbe-deck-bundle");
 
         if (target && target.assets.length > 0) {
-          const asset = target.assets.find((a) => a.name === "GBE-Custom-Bundle.tpz2");
-          const updatedAt = new Date(asset?.updated_at || 0).getTime();
+          const asset = target.assets.find((a) => a.name === expectedFilename);
 
-          if (asset && updatedAt > triggerTime) {
+          if (asset) {
             clearInterval(interval);
             setStatusMessage("✅ Bundle ready! Downloading...");
             setIsBundling(false);
