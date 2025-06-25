@@ -349,10 +349,12 @@ body {
   }
 
   .category-card:last-of-type {
-    margin-bottom: calc(3rem + 60px);
+    margin-bottom: calc(4rem + 150px);
   }
 
   .info-panel {
+    display: flex;
+    align-items: center;
     position: fixed;
     left: 0;
     right: 0;
@@ -393,6 +395,7 @@ body {
     height: calc(100% - 60px);
     margin-top: 10rem;
     position: relative;
+    width: 85vw;
   }
   .download-footer {
     position: sticky;
@@ -401,6 +404,6 @@ body {
     position: fixed;
     top: 0;
     height: fit-content;
-    width: calc(100% - 3rem);
+    width: 85vw;
   }
 }
