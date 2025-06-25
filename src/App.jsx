@@ -68,7 +68,6 @@ function App() {
       const triggerTime = Date.now();
       setStatusMessage("⏳ Bundling...");
       setProgress(10);
-
       pollForReleaseAndDownload(triggerTime);
     } catch (error) {
       console.error("Download error:", error);
