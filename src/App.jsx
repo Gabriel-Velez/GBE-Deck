@@ -54,13 +54,11 @@ function App() {
     setStatusMessage("Triggering bundle...");
     setProgress(5);
 
-    const bundleId = Math.random().toString(36).slice(2, 10); // 8-char random ID
-
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pages: selectedPages, bundleId }),
+        body: JSON.stringify({ pages: selectedPages }),
       });
 
       if (!res.ok) {
@@ -69,7 +67,7 @@ function App() {
 
       setStatusMessage("⏳ Bundling...");
       setProgress(10);
-      pollForReleaseAndDownload(bundleId);
+      pollForReleaseAndDownload();
     } catch (error) {
       console.error("Download error:", error);
       setStatusMessage("❌ Failed to trigger bundle");
@@ -78,7 +76,7 @@ function App() {
     }
   };
 
-  const pollForReleaseAndDownload = (bundleId) => {
+  const pollForReleaseAndDownload = () => {
     const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
     let attempts = 0;
     const maxAttempts = 18;

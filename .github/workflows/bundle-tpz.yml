@@ -1,39 +1,36 @@
-name: Bundle Selected Pages
+name: Trigger Bundle on JSON Update
 
 on:
-  repository_dispatch:
-    types: [bundle-pages]
   push:
-    branches:
-      - main
     paths:
-      - bundle-trigger/selected-pages.json
+      - "bundle-trigger/selected-pages.json"
 
 jobs:
-  build-bundle:
+  bundle:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          ref: main
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: "3.11"
 
-      - name: Install zip utility
-        run: sudo apt-get install zip unzip
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Run bundler script
         run: python bundle_pages_v2.py
 
-      - name: Upload GBEDeck.tpz2 to GitHub Release
+      - name: Rename bundle to fixed name
+        run: |
+          mv $(find . -name "GBE-Bundle-*.tpz2") GBE-Custom-Bundle.tpz2
+
+      - name: Upload bundle to release
         uses: softprops/action-gh-release@v1
         with:
-          name: GBEDeck Custom Bundle
           tag_name: gbe-deck-bundle
           files: GBE-Custom-Bundle.tpz2
         env:
