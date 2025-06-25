@@ -85,9 +85,13 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         print(f"⏩ Skipped (already exists): {target}")
 
     # Use version from last page (or fallback)
-    version_data = {"version": "3.1.6"}
-    if (extract_dir / "version.json").exists():
-        with open(extract_dir / "version.json", "r", encoding="utf-8") as f:
+version_data = {"version": "3.1.6"}
+if merged_pages:  # Only try if something was added
+    last_page_name = selected[-1]
+    last_extract_dir = tmpdir_path / last_page_name
+    version_path = last_extract_dir / "version.json"
+    if version_path.exists():
+        with open(version_path, "r", encoding="utf-8") as f:
             version_data = json.load(f)
 
     # Build final data.json
