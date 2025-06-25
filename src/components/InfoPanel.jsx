@@ -54,10 +54,6 @@ export default function InfoPanel({
 
   return (
     <aside className={`info-panel${isExpanded ? " expanded" : " collapsed"}`}>
-      <div className='info-toggle' onClick={() => setIsExpanded(!isExpanded)}>
-        <span>{isExpanded ? "▼" : "▲"}</span>
-      </div>
-
       <div className='info-content'>
         {screenshots.length > 0 && (
           <div className='carousel'>
@@ -120,6 +116,9 @@ export default function InfoPanel({
       </div>
 
       <div className='download-footer'>
+        <p>
+          <strong>Total pages selected:</strong> {selectedCount}
+        </p>
         <div className='button-wrapper'>
           <button
             className='submit-button'
@@ -130,17 +129,16 @@ export default function InfoPanel({
           <button className='select-all-btn' onClick={handleGlobalToggle}>
             {areAllVisiblePagesSelected() ? "Deselect\u00A0All" : "Select\u00A0All"}
           </button>
+          <div className='info-toggle' onClick={() => setIsExpanded(!isExpanded)}>
+            <span>{isExpanded ? "▼" : "▲"}</span>
+          </div>
         </div>
-
         {isBundling && (
           <div className='progress-container'>
             <div className='progress-bar' style={{ width: `${progress}%` }}></div>
           </div>
         )}
         <p>{statusMessage}</p>
-        <p>
-          <strong>Total pages selected:</strong> {selectedCount}
-        </p>
       </div>
     </aside>
   );

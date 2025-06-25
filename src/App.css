@@ -99,6 +99,7 @@ body {
 /* === DOWNLOAD BUTTON === */
 .button-wrapper {
   display: flex;
+  gap: 1rem;
 }
 
 .submit-button {
@@ -362,7 +363,7 @@ body {
     z-index: 10;
     border-top: 2px solid var(--border);
     border-radius: 12px 12px 0 0;
-    transform: translateY(calc(100% - 60px));
+    transform: translateY(calc(100% - 150px));
     transition: transform 0.3s ease;
     overflow: hidden;
   }
@@ -373,9 +374,6 @@ body {
 
   .info-toggle {
     display: block;
-    position: absolute;
-    left: calc(100% - 4.5rem);
-    transform: translateX(-50%);
     background: var(--border);
     border-radius: 12px;
     padding: 0.6rem 1.2rem;
@@ -383,7 +381,6 @@ body {
     z-index: 11;
     width: 5%;
     text-align: center;
-    margin-top: 1.5rem;
   }
 
   .info-panel.collapsed .info-content {
@@ -404,6 +401,6 @@ body {
     position: fixed;
     top: 0;
     height: fit-content;
-    width: 70%;
+    width: calc(100% - 3rem);
   }
 }
