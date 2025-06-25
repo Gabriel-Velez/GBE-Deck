@@ -363,8 +363,6 @@ body {
     width: 100%;
     background-color: var(--bg-panel);
     z-index: 10;
-    border-top: 2px solid var(--border);
-    border-radius: 12px 12px 0 0;
     transform: translateY(calc(100% - 150px));
     transition: transform 0.3s ease;
     overflow: hidden;
