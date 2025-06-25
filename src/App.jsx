@@ -51,7 +51,6 @@ function App() {
 
   const handleDownload = async () => {
     setIsBundling(true);
-    setStatusMessage("Triggering bundle...");
     setProgress(5);
 
     const triggerTime = Date.now(); // ⏱️ Used to verify freshness
