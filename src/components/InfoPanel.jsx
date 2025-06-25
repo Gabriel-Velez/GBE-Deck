@@ -13,9 +13,15 @@ export default function InfoPanel({
 }) {
   const selectedCount = selectedPages.length;
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     setCurrentScreenshot(0);
+
+    // ✅ Auto-expand when a page is selected (on mobile or always, your choice)
+    if (selectedPage && window.innerWidth <= 1250) {
+      setIsExpanded(true);
+    }
   }, [selectedPage]);
 
   const screenshots = selectedPage?.meta?.screenshot
@@ -47,13 +53,16 @@ export default function InfoPanel({
   });
 
   return (
-    <aside className='info-panel'>
+    <aside className={`info-panel${isExpanded ? " expanded" : " collapsed"}`}>
+      <div className='info-toggle' onClick={() => setIsExpanded(!isExpanded)}>
+        <span>{isExpanded ? "▼" : "▲"}</span>
+      </div>
+
       <div className='info-content'>
-        {/* === Screenshot Carousel === */}
         {screenshots.length > 0 && (
           <div className='carousel'>
             <img
-              src={screenshots[currentScreenshot]} // ✅ use raw URL directly!
+              src={screenshots[currentScreenshot]}
               alt={`Screenshot ${currentScreenshot + 1}`}
               className='screenshot-image'
             />
@@ -69,7 +78,6 @@ export default function InfoPanel({
           </div>
         )}
 
-        {/* === Meta info === */}
         <div className='meta-block'>
           {selectedPage ? (
             <>
@@ -93,29 +101,6 @@ export default function InfoPanel({
           )}
         </div>
 
-        {/* === Download + Select All === */}
-        <div className='download-footer'>
-          <button
-            className='submit-button'
-            style={{ marginTop: "1rem" }}
-            onClick={handleDownload}
-            disabled={selectedPages.length === 0 || isBundling}>
-            {isBundling ? "Bundling..." : "Download"}
-          </button>
-
-          {isBundling && (
-            <div className='progress-container'>
-              <div className='progress-bar' style={{ width: `${progress}%` }}></div>
-            </div>
-          )}
-          <p>{statusMessage}</p>
-          <button className='select-all-btn' onClick={handleGlobalToggle}>
-            {areAllVisiblePagesSelected() ? "Deselect All" : "Select All"}
-          </button>
-          <p>Total pages selected: {selectedCount}</p>
-        </div>
-
-        {/* === Dependencies === */}
         {uniqueDependencies && uniqueDependencies.length > 0 && (
           <div className='dependencies-panel'>
             <h4>Dependencies Required:</h4>
@@ -132,6 +117,30 @@ export default function InfoPanel({
             </ul>
           </div>
         )}
+      </div>
+
+      <div className='download-footer'>
+        <div className='button-wrapper'>
+          <button
+            className='submit-button'
+            onClick={handleDownload}
+            disabled={selectedPages.length === 0 || isBundling}>
+            {isBundling ? "Bundling..." : "Download"}
+          </button>
+          <button className='select-all-btn' onClick={handleGlobalToggle}>
+            {areAllVisiblePagesSelected() ? "Deselect\u00A0All" : "Select\u00A0All"}
+          </button>
+        </div>
+
+        {isBundling && (
+          <div className='progress-container'>
+            <div className='progress-bar' style={{ width: `${progress}%` }}></div>
+          </div>
+        )}
+        <p>{statusMessage}</p>
+        <p>
+          <strong>Total pages selected:</strong> {selectedCount}
+        </p>
       </div>
     </aside>
   );
