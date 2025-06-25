@@ -22,6 +22,15 @@ merged_pages = []
 merged_images = []
 uuid_set = set()
 
+def find_tpz2_path(target_name):
+    """Search recursively under Pages/ for a folder named `target_name` that contains Pages.tpz2."""
+    for folder in pages_root.rglob("*"):
+        if folder.is_dir() and folder.name == target_name:
+            tpz = folder / "Pages.tpz2"
+            if tpz.exists():
+                return tpz
+    return None
+
 # Start temp workspace
 with tempfile.TemporaryDirectory() as tmpdir:
     tmpdir_path = Path(tmpdir)
@@ -29,11 +38,11 @@ with tempfile.TemporaryDirectory() as tmpdir:
     final_img_dir.mkdir()
 
     for name in selected:
-        print(f"🔍 Looking for: Pages/{name}/Pages.tpz2")
+        print(f"🔍 Searching for: {name}/Pages.tpz2")
 
-        tpz_path = pages_root / name / "Pages.tpz2"
-        if not tpz_path.exists():
-            print(f"❌ Not found: {tpz_path} — skipping")
+        tpz_path = find_tpz2_path(name)
+        if not tpz_path:
+            print(f"❌ Not found: {name} — skipping")
             continue
 
         print(f"✅ Found: {tpz_path}")
@@ -57,24 +66,22 @@ with tempfile.TemporaryDirectory() as tmpdir:
                         uuid_set.add(img["uuid"])
 
         for file in extract_dir.glob("*.png"):
-            if file.is_file():
-                target = final_img_dir / file.name
-                if not target.exists():
-                    shutil.copy(file, target)
-                    print(f"✅ Copied root image: {file.name}")
-                else:
-                    print(f"⏩ Skipped duplicate root: {file.name}")
+            target = final_img_dir / file.name
+            if not target.exists():
+                shutil.copy(file, target)
+                print(f"✅ Copied root image: {file.name}")
+            else:
+                print(f"⏩ Skipped duplicate root: {file.name}")
 
         img_subfolder = extract_dir / "img"
         if img_subfolder.exists():
             for file in img_subfolder.glob("*.png"):
-                if file.is_file():
-                    target = final_img_dir / file.name
-                    if not target.exists():
-                        shutil.copy(file, target)
-                        print(f"✅ Copied nested image: {file.name}")
-                    else:
-                        print(f"⏩ Skipped duplicate nested: {file.name}")
+                target = final_img_dir / file.name
+                if not target.exists():
+                    shutil.copy(file, target)
+                    print(f"✅ Copied nested image: {file.name}")
+                else:
+                    print(f"⏩ Skipped duplicate nested: {file.name}")
 
     version_data = {"version": "3.1.6"}
     if merged_pages:
