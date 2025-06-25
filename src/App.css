@@ -403,5 +403,6 @@ body {
     top: 0;
     height: fit-content;
     width: 85vw;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
   }
 }

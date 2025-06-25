@@ -67,7 +67,6 @@ function App() {
         throw new Error(`Worker failed: ${await res.text()}`);
       }
 
-      setStatusMessage("⏳ Bundling...");
       setProgress(10);
       pollForReleaseAndDownload(triggerTime);
     } catch (error) {
