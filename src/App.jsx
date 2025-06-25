@@ -54,6 +54,8 @@ function App() {
     setStatusMessage("Triggering bundle...");
     setProgress(5);
 
+    const triggerTime = Date.now(); // ⏱️ Used to verify freshness
+
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
         method: "POST",
@@ -67,7 +69,7 @@ function App() {
 
       setStatusMessage("⏳ Bundling...");
       setProgress(10);
-      pollForReleaseAndDownload();
+      pollForReleaseAndDownload(triggerTime);
     } catch (error) {
       console.error("Download error:", error);
       setStatusMessage("❌ Failed to trigger bundle");
@@ -76,11 +78,10 @@ function App() {
     }
   };
 
-  const pollForReleaseAndDownload = () => {
+  const pollForReleaseAndDownload = (triggerTime) => {
     const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
     let attempts = 0;
     const maxAttempts = 18;
-
     const expectedFilename = `GBE-Custom-Bundle.tpz2`;
 
     const interval = setInterval(async () => {
@@ -95,16 +96,21 @@ function App() {
           const asset = target.assets.find((a) => a.name === expectedFilename);
 
           if (asset) {
-            clearInterval(interval);
-            setStatusMessage("✅ Bundle ready! Downloading...");
-            setIsBundling(false);
-            setProgress(100);
+            const assetTime = new Date(asset.updated_at).getTime();
+            if (assetTime >= triggerTime) {
+              clearInterval(interval);
+              setStatusMessage("✅ Bundle ready! Downloading...");
+              setIsBundling(false);
+              setProgress(100);
 
-            const link = document.createElement("a");
-            link.href = asset.browser_download_url;
-            link.download = asset.name;
-            link.click();
-            return;
+              const link = document.createElement("a");
+              link.href = asset.browser_download_url;
+              link.download = asset.name;
+              link.click();
+              return;
+            } else {
+              console.log("🕒 Asset found but too old — still waiting");
+            }
           }
         }
 
