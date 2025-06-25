@@ -52,13 +52,8 @@ function App() {
   };
 
   const handleDownload = async () => {
-    if (selectedPages.length === 0) return;
-
     setIsBundling(true);
-    setStatusMessage("");
-    setProgress(0);
-
-    const triggerTime = Date.now();
+    setStatusMessage("Triggering bundle...");
 
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
@@ -67,72 +62,33 @@ function App() {
         body: JSON.stringify({ pages: selectedPages }),
       });
 
-      if (res.ok) {
-        setStatusMessage("⏳ Waiting for bundle... This may take a couple of minutes.");
-        pollForReleaseAndDownload(triggerTime);
-      } else {
-        setStatusMessage("❌ Failed to trigger bundler");
-        setIsBundling(false);
+      if (!res.ok) {
+        throw new Error(`Worker failed: ${await res.text()}`);
       }
-    } catch (err) {
-      console.error(err);
-      setStatusMessage("❌ Network error");
+
+      const { downloadUrl } = await res.json();
+
+      if (!downloadUrl) {
+        throw new Error("No download URL returned from Worker");
+      }
+
+      setStatusMessage("Downloading...");
+
+      const blob = await (await fetch(downloadUrl)).blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "GBE-Custom-Bundle.tpz2";
+      a.click();
+
+      setStatusMessage("✅ Download complete!");
+    } catch (error) {
+      console.error("Download error:", error);
+      setStatusMessage("❌ Timeout. Try again.");
+    } finally {
       setIsBundling(false);
+      setProgress(0);
     }
-  };
-
-  const pollForReleaseAndDownload = (triggerTime) => {
-    const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
-    let attempts = 0;
-    const maxAttempts = 18; // or however many intervals you want
-
-    const interval = setInterval(async () => {
-      attempts++;
-      try {
-        const res = await fetch(url);
-        const releases = await res.json();
-        const target = releases.find((r) => r.tag_name === "gbe-deck-bundle");
-
-        if (target && target.assets.length > 0) {
-          const asset = target.assets.find((a) => a.name === "GBE-Custom-Bundle.tpz2");
-          const updatedAt = new Date(asset?.updated_at || 0).getTime();
-
-          if (asset && updatedAt > triggerTime) {
-            clearInterval(interval);
-            setStatusMessage("✅ Bundle ready! Downloading...");
-            setIsBundling(false);
-            setProgress(100); // jump to full!
-
-            // Download it:
-            const link = document.createElement("a");
-            link.href = asset.browser_download_url;
-            link.download = asset.name;
-            link.click();
-
-            // Cleanup:
-            await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ action: "cleanup" }),
-            });
-
-            return;
-          }
-        }
-
-        // Sync progress to polling time
-        setProgress(Math.min((attempts / maxAttempts) * 95, 95));
-
-        if (attempts >= maxAttempts) {
-          clearInterval(interval);
-          setStatusMessage("❌ Timeout. Try again.");
-          setIsBundling(false);
-          setProgress(0);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }, 5000);
   };
 
   // === Get filtered data ===
