@@ -363,10 +363,9 @@ body {
     width: 100%;
     background-color: var(--bg-panel);
     z-index: 10;
-    transform: translateY(calc(100% - 10rem));
+    transform: translateY(calc(100% - 10rem - env(safe-area-inset-bottom)));
     transition: transform 0.3s ease;
     overflow: hidden;
-    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
   }
 
   .info-panel.expanded {
@@ -404,6 +403,5 @@ body {
     top: 0;
     height: fit-content;
     width: 85vw;
-    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
   }
 }
