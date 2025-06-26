@@ -108,10 +108,20 @@ export default function InfoPanel({
                 <strong>Modular all-in-one macro deck.</strong>
               </p>
               <p>
-                A dark-mode-optimized Touch Portal setup built for productivity, creativity, dev
-                tools, gaming and more. Designed to be copied, extended, or entirely remixed.
+                A dark-mode Touch Portal setup built for productivity, creativity, dev tools, and
+                gaming. Fully modular. Copy it, remix it, or build your own stack from scratch.
               </p>
-              <p>Select a category or page to see more info.</p>
+              <p>
+                Check out the pages by clicking on them, pick the ones you want, hit{" "}
+                <strong>Download</strong>, and get a custom .tpz2 bundle.
+              </p>
+              <p>
+                New to this?{" "}
+                <a href='https://www.touch-portal.com/' target='_blank'>
+                  Touch Portal
+                </a>{" "}
+                is free on Windows and macOS.
+              </p>
             </>
           )}
         </div>
