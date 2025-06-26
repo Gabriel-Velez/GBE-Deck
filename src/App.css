@@ -264,7 +264,7 @@ body {
   color: white;
   width: 100%;
   position: sticky;
-  top: 2rem;
+  top: 0;
 }
 
 .dependencies-panel {
@@ -359,11 +359,11 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 100vh;
+    height: (100vh - env(safe-area-inset-bottom));
     width: 100%;
     background-color: var(--bg-panel);
     z-index: 10;
-    transform: translateY(calc(100% - 10rem));
+    transform: translateY(calc(100% - 9rem));
     transition: transform 0.3s ease;
     overflow: hidden;
   }
