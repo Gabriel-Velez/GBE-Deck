@@ -17,12 +17,27 @@ export default function InfoPanel({
 
   useEffect(() => {
     setCurrentScreenshot(0);
-
-    // ✅ Auto-expand when a page is selected (on mobile or always, your choice)
     if (selectedPage && window.innerWidth <= 1250) {
       setIsExpanded(true);
     }
   }, [selectedPage]);
+
+  // ✅ Lock scroll when expanded
+  useEffect(() => {
+    const updateScrollLock = () => {
+      const shouldLock = window.innerWidth <= 1250;
+      if (isExpanded && shouldLock) {
+        document.body.classList.add("no-scroll");
+      } else {
+        document.body.classList.remove("no-scroll");
+      }
+    };
+
+    updateScrollLock(); // initial check
+
+    window.addEventListener("resize", updateScrollLock);
+    return () => window.removeEventListener("resize", updateScrollLock);
+  }, [isExpanded]);
 
   const screenshots = selectedPage?.meta?.screenshot
     ? Array.isArray(selectedPage.meta.screenshot)

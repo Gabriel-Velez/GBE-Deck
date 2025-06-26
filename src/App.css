@@ -18,6 +18,10 @@ body {
   place-items: unset;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 .layout {
   display: flex;
   align-items: flex-start;
