@@ -100,10 +100,6 @@ body.no-scroll {
   transform: scale(0.4);
 }
 
-.card-title-area {
-  margin-left: 1rem;
-}
-
 /* === DOWNLOAD BUTTON === */
 .button-wrapper {
   display: flex;
@@ -414,8 +410,5 @@ body.no-scroll {
   }
   .info-content > *:last-child {
     margin-bottom: 4rem;
-  }
-  .card-title-area {
-    margin-left: 0;
   }
 }
