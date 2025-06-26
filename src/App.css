@@ -415,4 +415,7 @@ body.no-scroll {
   .info-content > *:last-child {
     margin-bottom: 4rem;
   }
+  .card-title-area {
+    margin-left: none;
+  }
 }
