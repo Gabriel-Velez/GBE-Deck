@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "bundle-trigger/selected-pages.json"
+      - "*.tpz2"
+      - "**/*.tpz2"
+      - "GBE-Bundle-*.tpz2"
 
 jobs:
   build-and-deploy:
