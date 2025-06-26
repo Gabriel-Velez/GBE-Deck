@@ -416,6 +416,6 @@ body.no-scroll {
     margin-bottom: 4rem;
   }
   .card-title-area {
-    margin-left: none;
+    margin-left: 0;
   }
 }
