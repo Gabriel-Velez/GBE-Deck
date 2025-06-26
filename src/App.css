@@ -79,26 +79,25 @@ body.no-scroll {
   cursor: pointer;
   font-size: 0.95rem;
   line-height: 1.3;
-  margin: 1rem;
-  padding-right: 1rem;
-  border-radius: 12px;
   gap: 1rem;
+  border-bottom: 1px var(--border) solid;
+}
+
+.category-card > .card-item:last-child {
+  border-bottom: none;
 }
 
 .card-item:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.card-item input {
-  width: 44px;
-  height: 44px;
-  transform: scale(0.5);
+.card-checkbox-area {
+  border-right: 1px var(--border) solid;
 }
-
-.label-divider {
-  width: 2px;
-  height: 20px;
-  background: var(--border);
+.card-item input {
+  width: 50px;
+  height: 50px;
+  transform: scale(0.4);
 }
 
 .card-title-area {

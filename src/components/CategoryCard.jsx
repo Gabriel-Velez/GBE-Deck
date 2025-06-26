@@ -32,9 +32,6 @@ function CategoryCard({
               />
             </label>
 
-            {/* Divider */}
-            <span className='label-divider' />
-
             {/* ✅ Title area: clicking sets InfoPanel ONLY */}
             <div className='card-title-area'>{page.meta.name}</div>
 
