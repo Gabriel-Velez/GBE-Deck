@@ -78,6 +78,7 @@ body {
   margin: 1rem;
   padding-right: 1rem;
   border-radius: 12px;
+  gap: 1rem;
 }
 
 .card-item:hover {
@@ -94,7 +95,6 @@ body {
   width: 2px;
   height: 20px;
   background: var(--border);
-  margin: 0 1rem;
 }
 
 .card-title-area {
@@ -412,5 +412,8 @@ body {
   }
   .info-content > *:last-child {
     margin-bottom: 4rem;
+  }
+  .card-item {
+    margin: 1rem 0;
   }
 }
