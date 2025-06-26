@@ -381,10 +381,9 @@ body {
   .info-toggle {
     display: block;
     background: var(--border);
-    border-radius: 12px;
+    border-radius: 6px;
     padding: 0.6rem 1.2rem;
     cursor: pointer;
-    z-index: 11;
     width: 5%;
     text-align: center;
   }
