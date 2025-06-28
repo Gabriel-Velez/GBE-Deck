@@ -171,7 +171,7 @@ function App() {
           if (pages.length === 0) return null;
           return (
             <CategoryCard
-              key={catcegory}
+              key={category}
               title={category}
               pages={pages}
               onSelectPage={setSelectedPage}
