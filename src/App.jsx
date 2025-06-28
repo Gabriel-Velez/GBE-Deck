@@ -149,12 +149,24 @@ function App() {
   return (
     <div className='layout'>
       <main className='grid-area'>
-        <input
-          placeholder='🔍 Search'
-          className='search-bar'
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className='sticky-container'>
+          <div className='search-container'>
+            <input
+              placeholder='🔍 Search'
+              className='search-bar'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            {search && (
+              <button
+                className='clear-search'
+                onClick={() => setSearch("")}
+                aria-label='Clear search'>
+                🗙
+              </button>
+            )}
+          </div>
+        </div>
         {filteredData.map(([category, pages]) => {
           if (pages.length === 0) return null;
           return (

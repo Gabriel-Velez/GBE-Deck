@@ -259,6 +259,18 @@ body.no-scroll {
   object-fit: contain;
 }
 
+.sticky-container {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 9;
+}
+
+.search-container {
+  display: flex;
+  gap: 1rem;
+}
+
 .search-bar {
   padding: 1rem;
   border: none;
@@ -267,9 +279,20 @@ body.no-scroll {
   background: #2a2a2a;
   color: white;
   width: 100%;
-  position: sticky;
   top: 0;
-  z-index: 9;
+}
+
+.clear-search {
+  background: #2a2a2a;
+  border: none;
+  color: #ccc;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.clear-search:hover {
+  color: #fff;
 }
 
 .dependencies-panel {
