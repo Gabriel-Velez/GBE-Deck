@@ -162,7 +162,7 @@ function App() {
                 className='clear-search'
                 onClick={() => setSearch("")}
                 aria-label='Clear search'>
-                🗙
+                ✖️
               </button>
             )}
           </div>
@@ -171,7 +171,7 @@ function App() {
           if (pages.length === 0) return null;
           return (
             <CategoryCard
-              key={category}
+              key={catcegory}
               title={category}
               pages={pages}
               onSelectPage={setSelectedPage}
