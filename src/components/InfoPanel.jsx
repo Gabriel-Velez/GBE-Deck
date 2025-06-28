@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function InfoPanel({
   selectedPage,
@@ -14,6 +14,7 @@ export default function InfoPanel({
   const selectedCount = selectedPages.length;
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const panelRef = useRef();
 
   useEffect(() => {
     setCurrentScreenshot(0);
@@ -22,8 +23,13 @@ export default function InfoPanel({
     }
   }, [selectedPage]);
 
-  // ✅ Lock scroll when expanded
   useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (panelRef.current && !panelRef.current.contains(e.target)) {
+        setIsExpanded(false);
+      }
+    };
+
     const updateScrollLock = () => {
       const shouldLock = window.innerWidth <= 1250;
       if (isExpanded && shouldLock) {
@@ -33,10 +39,17 @@ export default function InfoPanel({
       }
     };
 
-    updateScrollLock(); // initial check
+    if (isExpanded) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    updateScrollLock();
 
     window.addEventListener("resize", updateScrollLock);
-    return () => window.removeEventListener("resize", updateScrollLock);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("resize", updateScrollLock);
+      document.body.classList.remove("no-scroll");
+    };
   }, [isExpanded]);
 
   const screenshots = selectedPage?.meta?.screenshot
@@ -68,7 +81,7 @@ export default function InfoPanel({
   });
 
   return (
-    <aside className={`info-panel${isExpanded ? " expanded" : " collapsed"}`}>
+    <aside ref={panelRef} className={`info-panel${isExpanded ? " expanded" : " collapsed"}`}>
       <div className='info-content'>
         {screenshots.length > 0 && (
           <div className='carousel'>
@@ -117,7 +130,7 @@ export default function InfoPanel({
               </p>
               <p>
                 New to this?{" "}
-                <a href='https://www.touch-portal.com/' target='_blank'>
+                <a href='https://www.touch-portal.com/' target='_blank' rel='noreferrer'>
                   Touch Portal
                 </a>{" "}
                 is free on Windows and macOS.
