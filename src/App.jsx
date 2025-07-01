@@ -1,6 +1,7 @@
 import "./App.css";
 import CategoryCard from "./components/CategoryCard";
 import InfoPanel from "./components/InfoPanel";
+import DownloadSuccessOverlay from "./components/DownloadSuccessOverlay";
 import data from "./data/pages.json";
 import { useState } from "react";
 
@@ -11,6 +12,7 @@ function App() {
   const [isBundling, setIsBundling] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [progress, setProgress] = useState(0);
+  const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
 
   const togglePage = (pageName) => {
     setSelectedPages((prev) =>
@@ -53,7 +55,7 @@ function App() {
     setIsBundling(true);
     setProgress(5);
 
-    const triggerTime = Date.now(); // ⏱️ Used to verify freshness
+    const triggerTime = Date.now();
 
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
@@ -105,6 +107,7 @@ function App() {
               link.href = asset.browser_download_url;
               link.download = asset.name;
               link.click();
+              setShowSuccessOverlay(true);
               return;
             } else {
               console.log("🕒 Asset found but too old — still waiting");
@@ -148,52 +151,67 @@ function App() {
 
   return (
     <div className='layout'>
-      <main className='grid-area'>
-        <div className='sticky-container'>
-          <div className='search-container'>
-            <input
-              placeholder='🔍 Search'
-              className='search-bar'
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            {search && (
-              <button
-                className='clear-search'
-                onClick={() => setSearch("")}
-                aria-label='Clear search'>
-                ✖️
-              </button>
-            )}
-          </div>
-        </div>
-        {filteredData.map(([category, pages]) => {
-          if (pages.length === 0) return null;
-          return (
-            <CategoryCard
-              key={category}
-              title={category}
-              pages={pages}
-              onSelectPage={setSelectedPage}
-              togglePage={togglePage}
-              selectedPages={selectedPages}
-              handleCategoryToggle={handleCategoryToggle}
-            />
-          );
-        })}
-      </main>
+      <button className='dev-toggle' onClick={() => setShowSuccessOverlay((prev) => !prev)}>
+        {showSuccessOverlay ? "Hide" : "Show"} Success Overlay
+      </button>
 
-      <InfoPanel
-        selectedPage={selectedPage}
-        selectedPages={selectedPages}
-        handleDownload={handleDownload}
-        handleGlobalToggle={handleGlobalToggle}
-        areAllVisiblePagesSelected={areAllVisiblePagesSelected}
-        isBundling={isBundling}
-        statusMessage={statusMessage}
-        uniqueDependencies={uniqueDependencies}
-        progress={progress}
-      />
+      {!showSuccessOverlay && (
+        <>
+          <main className='grid-area'>
+            <div className='sticky-container'>
+              <div className='search-container'>
+                <input
+                  placeholder='🔍 Search'
+                  className='search-bar'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                {search && (
+                  <button
+                    className='clear-search'
+                    onClick={() => setSearch("")}
+                    aria-label='Clear search'>
+                    ✖️
+                  </button>
+                )}
+              </div>
+            </div>
+            {filteredData.map(([category, pages]) => {
+              if (pages.length === 0) return null;
+              return (
+                <CategoryCard
+                  key={category}
+                  title={category}
+                  pages={pages}
+                  onSelectPage={setSelectedPage}
+                  togglePage={togglePage}
+                  selectedPages={selectedPages}
+                  handleCategoryToggle={handleCategoryToggle}
+                />
+              );
+            })}
+          </main>
+
+          <InfoPanel
+            selectedPage={selectedPage}
+            selectedPages={selectedPages}
+            handleDownload={handleDownload}
+            handleGlobalToggle={handleGlobalToggle}
+            areAllVisiblePagesSelected={areAllVisiblePagesSelected}
+            isBundling={isBundling}
+            statusMessage={statusMessage}
+            uniqueDependencies={uniqueDependencies}
+            progress={progress}
+          />
+        </>
+      )}
+
+      {showSuccessOverlay && (
+        <DownloadSuccessOverlay
+          onClose={() => setShowSuccessOverlay(false)}
+          uniqueDependencies={uniqueDependencies}
+        />
+      )}
     </div>
   );
 }

@@ -355,6 +355,125 @@ body.no-scroll {
   transition: width 0.3s ease;
 }
 
+/* === DOWNLOAD SUCCESS OVERLAY === */
+
+.success-overlay {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.success-content {
+  text-align: center;
+  position: relative;
+  background: var(--bg-panel);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 80vw;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.checkmark-wrapper {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+}
+
+.checkmark {
+  stroke: green;
+  stroke-dashoffset: 745.74853515625;
+  stroke-dasharray: 745.74853515625;
+  animation: dash 3.5s ease forwards;
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 745.74853515625;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-content h2 {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.success-content p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.success-content h3 {
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+.overlay-image {
+  width: 50%;
+  border-radius: 8px;
+  margin: 0.5rem 0 1rem;
+}
+
+.icon-pack-link {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.icon-pack-link:hover {
+  background-color: #3a93c2;
+}
+
+.success-flex {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  align-items: center;
+}
+
+.dependencies-panel-success {
+  margin: auto;
+  background: none;
+}
+
+.close-overlay-btn-wrapper {
+  position: sticky;
+  top: 1rem;
+  right: 1rem;
+}
+
+.close-overlay-btn {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s ease;
+  right: 1rem;
+}
+
+.close-overlay-btn:hover {
+  color: var(--accent);
+}
+
+/* === RESPONSIVE === */
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -434,4 +553,27 @@ body.no-scroll {
   .info-content > *:last-child {
     margin-bottom: 4rem;
   }
+}
+
+/* === DEV STUFF === */
+
+.dev-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  background-color: var(--accent, #007acc);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dev-toggle:hover {
+  background-color: #3a93c2;
 }
