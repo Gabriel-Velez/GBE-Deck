@@ -5,6 +5,7 @@ function CategoryCard({
   togglePage,
   selectedPages,
   handleCategoryToggle,
+  isBundling,
 }) {
   const visiblePageNames = pages.map((p) => p.meta.name);
   const allSelected = visiblePageNames.every((name) => selectedPages.includes(name));
@@ -13,7 +14,7 @@ function CategoryCard({
     <div className='category-card'>
       <div className='card-header'>
         <strong>{title}</strong>
-        <button onClick={() => handleCategoryToggle(title, pages)}>
+        <button onClick={() => handleCategoryToggle(title, pages)} disabled={isBundling}>
           {allSelected ? "Deselect All" : "Select All"}
         </button>
       </div>
@@ -29,6 +30,7 @@ function CategoryCard({
                 type='checkbox'
                 checked={isChecked}
                 onChange={() => togglePage(page.meta.name)}
+                disabled={isBundling}
               />
             </label>
 

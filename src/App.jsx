@@ -187,6 +187,7 @@ function App() {
                   togglePage={togglePage}
                   selectedPages={selectedPages}
                   handleCategoryToggle={handleCategoryToggle}
+                  isBundling={isBundling}
                 />
               );
             })}

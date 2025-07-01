@@ -168,7 +168,7 @@ export default function InfoPanel({
             disabled={selectedPages.length === 0 || isBundling}>
             {isBundling ? "Bundling..." : "Download"}
           </button>
-          <button className='select-all-btn' onClick={handleGlobalToggle}>
+          <button className='select-all-btn' onClick={handleGlobalToggle} disabled={isBundling}>
             {areAllVisiblePagesSelected() ? "Deselect\u00A0All" : "Select\u00A0All"}
           </button>
           <div className='info-toggle' onClick={() => setIsExpanded(!isExpanded)}>
