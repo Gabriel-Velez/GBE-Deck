@@ -426,6 +426,7 @@ body.no-scroll {
 
 .overlay-image {
   width: 50%;
+  max-width: 800px;
   border-radius: 8px;
   margin: 0.5rem 0 1rem;
 }
