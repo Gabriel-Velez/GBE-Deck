@@ -99,7 +99,6 @@ function App() {
             const assetTime = new Date(asset.updated_at).getTime();
             if (assetTime >= triggerTime) {
               clearInterval(interval);
-              setStatusMessage("✅ Bundle ready! Downloading...");
               setIsBundling(false);
               setProgress(100);
 
