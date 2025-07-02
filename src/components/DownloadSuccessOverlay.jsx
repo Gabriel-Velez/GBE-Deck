@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import TpImport from "../assets/tp-import.png";
-import TpIconPack from "../assets/tp-import-iconpack.png";
-import TpPlugin from "../assets/tp-import-plugin.png";
 
 export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) {
   const [showIconPackInstructions, setShowIconPackInstructions] = useState(false);
@@ -41,7 +38,11 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
               GBE-Custom-Bundle.tpz2 file.
             </p>
           </div>
-          <img src={TpImport} alt='Import pages' className='overlay-image' />
+          <img
+            src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/sucessScreenshots/tp-import.png'
+            alt='Import pages'
+            className='overlay-image'
+          />
         </div>
 
         {uniqueDependencies && uniqueDependencies.length > 0 && (
@@ -71,7 +72,11 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
                   required plugins:
                 </p>
               </div>
-              <img src={TpPlugin} alt='Import plugin' className='overlay-image' />
+              <img
+                src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/sucessScreenshots/tp-import-plugin.png'
+                alt='Import plugin'
+                className='overlay-image'
+              />
             </>
           )}
         </div>
@@ -103,7 +108,11 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
                 GBE-Deck-Icons.tpi.
               </p>
             </div>
-            <img src={TpIconPack} alt='Import icon pack' className='overlay-image' />
+            <img
+              src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/sucessScreenshots/tp-import-iconpack.png'
+              alt='Import icon pack'
+              className='overlay-image'
+            />
           </div>
         )}
       </div>
