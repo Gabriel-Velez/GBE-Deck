@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import TpImport from "../assets/tp import.png";
-import TpIconPack from "../assets/tp import iconpack.png";
-import TpPlugin from "../assets/tp import plugin.png";
+import TpImport from "../assets/tp-import.png";
+import TpIconPack from "../assets/tp-import-iconpack.png";
+import TpPlugin from "../assets/tp-import-plugin.png";
 
 export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) {
   const [showIconPackInstructions, setShowIconPackInstructions] = useState(false);
