@@ -425,7 +425,7 @@ body.no-scroll {
 }
 
 .overlay-image {
-  width: 50%;
+  width: 90%;
   max-width: 800px;
   border-radius: 8px;
   margin: 0.5rem 0 1rem;
@@ -481,6 +481,8 @@ body.no-scroll {
   z-index: 10;
   transition: color 0.2s ease;
   right: 1rem;
+  background: var(--bg-panel);
+  opacity: 0.7;
 }
 
 .close-overlay-btn:hover {
