@@ -39,7 +39,7 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
             </p>
           </div>
           <img
-            src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/sucessScreenshots/tp-import.png'
+            src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/sucessScreenshots/tp-import.png'
             alt='Import pages'
             className='overlay-image'
           />
@@ -73,7 +73,7 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
                 </p>
               </div>
               <img
-                src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/sucessScreenshots/tp-import-plugin.png'
+                src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/sucessScreenshots/tp-import-plugin.png'
                 alt='Import plugin'
                 className='overlay-image'
               />
@@ -109,7 +109,7 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
               </p>
             </div>
             <img
-              src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/sucessScreenshots/tp-import-iconpack.png'
+              src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/sucessScreenshots/tp-import-iconpack.png'
               alt='Import icon pack'
               className='overlay-image'
             />
