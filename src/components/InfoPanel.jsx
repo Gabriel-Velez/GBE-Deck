@@ -89,6 +89,8 @@ export default function InfoPanel({
               src={screenshots[currentScreenshot]}
               alt={`Screenshot ${currentScreenshot + 1}`}
               className='screenshot-image'
+              width='800'
+              height='600'
             />
             {screenshots.length > 1 && (
               <div className='carousel-controls'>

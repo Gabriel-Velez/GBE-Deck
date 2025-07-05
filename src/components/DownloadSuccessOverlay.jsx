@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import TpImport from "../assets/tp-import.png";
+import TpIconPack from "../assets/tp-import-iconpack.png";
+import TpPlugin from "../assets/tp-import-plugin.png";
 
 export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) {
   const [showIconPackInstructions, setShowIconPackInstructions] = useState(false);
@@ -39,9 +42,11 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
             </p>
           </div>
           <img
-            src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/sucessScreenshots/tp-import.png'
+            src={TpImport}
             alt='Import pages'
             className='overlay-image'
+            width='800'
+            height='450'
           />
         </div>
 
@@ -73,9 +78,11 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
                 </p>
               </div>
               <img
-                src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/sucessScreenshots/tp-import-plugin.png'
+                src={TpPlugin}
                 alt='Import plugin'
                 className='overlay-image'
+                width='800'
+                height='450'
               />
             </>
           )}
@@ -109,9 +116,11 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
               </p>
             </div>
             <img
-              src='https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/main/sucessScreenshots/tp-import-iconpack.png'
+              src={TpIconPack}
               alt='Import icon pack'
               className='overlay-image'
+              width='800'
+              height='450'
             />
           </div>
         )}
