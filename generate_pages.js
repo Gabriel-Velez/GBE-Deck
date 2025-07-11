@@ -10,7 +10,7 @@ const allCategories = fs
   .filter((folder) => fs.statSync(path.join(PAGES_DIR, folder)).isDirectory());
 
 // 2️⃣ Custom priority order
-const priority = ["General", "Templates", "Web Browser", "Music"];
+const priority = ["Essentials", "Templates", "Web Browser", "Music"];
 const sortedCategories = [
   ...priority,
   ...allCategories.filter((c) => !priority.includes(c)).sort((a, b) => a.localeCompare(b)),

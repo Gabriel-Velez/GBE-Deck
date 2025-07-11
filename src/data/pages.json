@@ -1,57 +1,57 @@
 {
-  "General": [
+  "Essentials": [
     {
-      "file": "General/File Explorer/Pages.tpz2",
+      "file": "Essentials/File Explorer/Pages.tpz2",
       "meta": {
         "name": "File Explorer",
         "author": "Gabe",
-        "version": "1.0",
+        "version": "1.1",
         "description": "Open File Explorer with navigation shortcuts and quick actions. Create new folders, open new windows, rename files, and jump to PC, Downloads, Documents, and drives.",
-        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/File%20Explorer/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Essentials/File%20Explorer/screenshot.png",
         "dependencies": []
       }
     },
     {
-      "file": "General/Games/Pages.tpz2",
+      "file": "Essentials/Games/Pages.tpz2",
       "meta": {
         "name": "Games",
         "author": "Gabe",
-        "version": "1.0",
+        "version": "1.1",
         "description": "Open Steam, other launchers, and access your favorite games and shortcuts. Quickly launch games directly from the Programs page.",
-        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Games/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Essentials/Games/screenshot.png",
         "dependencies": []
       }
     },
     {
-      "file": "General/Main Menu/Pages.tpz2",
+      "file": "Essentials/Main Menu/Pages.tpz2",
       "meta": {
         "name": "Main Menu",
         "author": "Gabe",
-        "version": "1.0",
+        "version": "1.2",
         "description": "Central hub for navigating all pages. Open it from any page by tapping the three vertical dots in the bottom left corner.",
-        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Main%20Menu/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Essentials/Main%20Menu/screenshot.png",
         "dependencies": []
       }
     },
     {
-      "file": "General/Programs/Pages.tpz2",
+      "file": "Essentials/Programs/Pages.tpz2",
       "meta": {
         "name": "Programs",
         "author": "Gabe",
-        "version": "1.0",
+        "version": "1.3",
         "description": "Default launcher that opens automatically when no other page is selected. Quickly open your most-used programs with a single tap.",
-        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Programs/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Essentials/Programs/screenshot.png",
         "dependencies": []
       }
     },
     {
-      "file": "General/Quick Controls/Pages.tpz2",
+      "file": "Essentials/Quick Controls/Pages.tpz2",
       "meta": {
         "name": "Quick Controls",
         "author": "Gabe",
         "version": "1.0",
         "description": "Access essential system settings from any page. Adjust input and output volume sliders and open system tools like Wi-Fi, Bluetooth, display settings, Task Manager, Volume Mixer, Calculator, Timer, and Snipping Tool.",
-        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/General/Quick%20Controls/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Essentials/Quick%20Controls/screenshot.png",
         "dependencies": [
           {
             "type": "file",
@@ -69,7 +69,7 @@
       "meta": {
         "name": "Button Lists",
         "author": "Gabe",
-        "version": "1.0",
+        "version": "1.1",
         "description": "The Button List pages are designed as modular, copy-paste-ready layouts containing popular apps, creative tools, games, and web services.",
         "screenshot": [
           "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Templates/Button%20Lists/screenshot1.png",
