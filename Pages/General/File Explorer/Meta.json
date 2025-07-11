@@ -1,7 +1,7 @@
 {
   "name": "File Explorer",
   "author": "Gabe",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Open File Explorer with navigation shortcuts and quick actions. Create new folders, open new windows, rename files, and jump to PC, Downloads, Documents, and drives.",
   "screenshot": "screenshot.png",
   "dependencies": []
