@@ -196,6 +196,8 @@ body.no-scroll {
 .carousel {
   position: relative;
   text-align: center;
+  background-color: var(--bg-panel);
+  border-radius: 12px;
 }
 
 .carousel img {
@@ -208,7 +210,7 @@ body.no-scroll {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   align-items: center;
 }
 
