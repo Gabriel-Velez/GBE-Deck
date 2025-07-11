@@ -387,7 +387,7 @@ body.no-scroll {
 
 /* === DOWNLOAD SUCCESS OVERLAY === */
 
-.success-overlay {
+.success-page {
   width: 100%;
   padding: 2rem;
   display: flex;
@@ -395,12 +395,12 @@ body.no-scroll {
 }
 
 .success-content {
+  width: 100%;
   text-align: center;
   position: relative;
   background: var(--bg-panel);
   padding: 2rem;
   border-radius: 12px;
-  width: 80vw;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
