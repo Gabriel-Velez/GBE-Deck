@@ -82,6 +82,31 @@ export default function InfoPanel({
 
   return (
     <aside ref={panelRef} className={`info-panel${isExpanded ? " expanded" : " collapsed"}`}>
+      <div className='download-footer'>
+        <p>
+          <strong>Total pages selected:</strong> {selectedCount}
+        </p>
+        <div className='button-wrapper'>
+          <button
+            className='submit-button'
+            onClick={handleDownload}
+            disabled={selectedPages.length === 0 || isBundling}>
+            {isBundling ? "Bundling..." : "Download"}
+          </button>
+          <button className='select-all-btn' onClick={handleGlobalToggle} disabled={isBundling}>
+            {areAllVisiblePagesSelected() ? "Deselect\u00A0All" : "Select\u00A0All"}
+          </button>
+          <div className='info-toggle' onClick={() => setIsExpanded(!isExpanded)}>
+            <span>{isExpanded ? "▼" : "▲"}</span>
+          </div>
+        </div>
+        {isBundling && (
+          <div className='progress-container'>
+            <div className='progress-bar' style={{ width: `${progress}%` }}></div>
+          </div>
+        )}
+        <p>{statusMessage}</p>
+      </div>
       <div className='info-content'>
         {screenshots.length > 0 && (
           <div className='carousel'>
@@ -107,7 +132,8 @@ export default function InfoPanel({
         <div className='meta-block'>
           {selectedPage ? (
             <>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div
+                style={{ display: "flex", justifyContent: "space-between", placeItems: "center" }}>
                 <h2>{selectedPage.meta.name}</h2>
                 <span className='version-pill'>v{selectedPage.meta.version}</span>
               </div>
@@ -157,32 +183,6 @@ export default function InfoPanel({
             </ul>
           </div>
         )}
-      </div>
-
-      <div className='download-footer'>
-        <p>
-          <strong>Total pages selected:</strong> {selectedCount}
-        </p>
-        <div className='button-wrapper'>
-          <button
-            className='submit-button'
-            onClick={handleDownload}
-            disabled={selectedPages.length === 0 || isBundling}>
-            {isBundling ? "Bundling..." : "Download"}
-          </button>
-          <button className='select-all-btn' onClick={handleGlobalToggle} disabled={isBundling}>
-            {areAllVisiblePagesSelected() ? "Deselect\u00A0All" : "Select\u00A0All"}
-          </button>
-          <div className='info-toggle' onClick={() => setIsExpanded(!isExpanded)}>
-            <span>{isExpanded ? "▼" : "▲"}</span>
-          </div>
-        </div>
-        {isBundling && (
-          <div className='progress-container'>
-            <div className='progress-bar' style={{ width: `${progress}%` }}></div>
-          </div>
-        )}
-        <p>{statusMessage}</p>
       </div>
     </aside>
   );

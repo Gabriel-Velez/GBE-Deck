@@ -14,7 +14,7 @@ body {
   margin: auto;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, sans-serif;
+  font-family: "avenir-next-lt-pro", sans-serif;
   place-items: unset;
 }
 
@@ -26,7 +26,8 @@ body.no-scroll {
   display: flex;
   align-items: flex-start;
   gap: 2rem;
-  margin-top: 2rem;
+  width: 90vw;
+  max-width: 1600px;
 }
 
 .grid-area {
@@ -39,7 +40,7 @@ body.no-scroll {
   justify-content: space-between;
   align-content: flex-start;
   flex-direction: row;
-  width: 50vw;
+  width: 60%;
   position: relative;
 }
 
@@ -170,7 +171,7 @@ body.no-scroll {
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Better for overflow */
-  width: 30vw;
+  width: 40%;
   position: sticky;
   top: 2rem;
   gap: 1.5rem;
@@ -228,7 +229,10 @@ body.no-scroll {
 
 .meta-block h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: "avenir-next-lt-pro-condensed", sans-serif;
+  font-style: normal;
 }
 
 .version-pill {
@@ -254,6 +258,9 @@ body.no-scroll {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .select-all-btn {
@@ -282,6 +289,8 @@ body.no-scroll {
 .search-container {
   display: flex;
   gap: 1rem;
+  padding-top: 2rem;
+  background: #242424;
 }
 
 .search-bar {
