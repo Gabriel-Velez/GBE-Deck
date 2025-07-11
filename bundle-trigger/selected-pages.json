@@ -1,7 +1,7 @@
 {
   "pages": [
-    "Games",
     "File Explorer",
+    "Games",
     "Main Menu",
     "Programs",
     "Quick Controls",
@@ -27,6 +27,6 @@
     "SQL",
     "Terminal"
   ],
-  "timestamp": 1752277638215,
-  "bundleId": "oyiqsfwr"
+  "timestamp": 1752277699803,
+  "bundleId": "xv1zmxmt"
 }
