@@ -182,7 +182,14 @@ function App() {
                   key={category}
                   title={category}
                   pages={pages}
-                  onSelectPage={setSelectedPage}
+                  onSelectPage={(page) => {
+                    if (selectedPage?.meta?.name === page.meta.name) {
+                      setSelectedPage(null);
+                      setTimeout(() => setSelectedPage(page), 0);
+                    } else {
+                      setSelectedPage(page);
+                    }
+                  }}
                   togglePage={togglePage}
                   selectedPages={selectedPages}
                   handleCategoryToggle={handleCategoryToggle}

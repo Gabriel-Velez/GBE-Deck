@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Logo from "../assets/GBE-Deck-Logo-White.png";
 
 export default function InfoPanel({
   selectedPage,
@@ -144,7 +145,7 @@ export default function InfoPanel({
             </>
           ) : (
             <>
-              <h2>GBE Deck</h2>
+              <img src={Logo} alt='GBE Deck' className='logo-image' width='800' height='450' />
               <p>
                 <strong>Modular all-in-one macro deck.</strong>
               </p>

@@ -229,6 +229,12 @@ body.no-scroll {
   padding: 1.5rem;
 }
 
+.logo-image {
+  width: 100%;
+  max-width: 350px;
+  height: fit-content;
+}
+
 .meta-block h2 {
   margin: 0;
   font-size: 2.5rem;
