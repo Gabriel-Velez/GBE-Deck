@@ -170,14 +170,14 @@ body.no-scroll {
 .info-panel {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Better for overflow */
+  justify-content: flex-start;
   width: 40%;
   position: sticky;
   top: 2rem;
   gap: 1.5rem;
-  max-height: calc(100vh - 4rem); /* Make sure it never exceeds viewport height minus padding */
-  overflow-y: auto; /* Enable vertical scrolling if needed */
-  padding-right: 0.5rem; /* Optional: for space next to scrollbar */
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
 .info-content {
