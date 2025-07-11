@@ -186,6 +186,10 @@ body.no-scroll {
   gap: 1.5rem;
 }
 
+.info-content > *:last-child {
+  margin-bottom: 2rem;
+}
+
 .screenshot-placeholder {
   width: 100%;
   aspect-ratio: 4 / 3;
