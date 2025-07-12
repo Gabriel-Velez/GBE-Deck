@@ -94,13 +94,13 @@
   ],
   "Web Browser": [
     {
-      "file": "Web Browser/Web Browser Controls/Pages.tpz2",
+      "file": "Web Browser/Google Chrome/Pages.tpz2",
       "meta": {
-        "name": "Web Browser Controls",
+        "name": "Google Chrome",
         "author": "Gabe",
         "version": "1.0",
         "description": "Open Google Chrome with touch controls for New Tab, New Window, Back, Refresh, Incognito, and Close Tab. Includes quick shortcuts for popular sites like YouTube, Netflix, Reddit, Amazon, and Twitch.",
-        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Web%20Browser/Web%20Browser%20Controls/screenshot.png",
+        "screenshot": "https://raw.githubusercontent.com/Gabriel-Velez/GBE-Deck/refs/heads/main/Pages/Web%20Browser/Google%20Chrome/screenshot.png",
         "dependencies": []
       }
     },
