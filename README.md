@@ -1,5 +1,6 @@
-# 📦 GBE Deck – Touch Portal Macro Layout
-
+<p align="center">
+<img src="sucessScreenshots/GBE-Deck-Logo.png" alt="Web Browser" />
+</p>
 A highly modular, dark-mode-optimized Touch Portal setup built for productivity, creativity, dev tools, and gaming. Designed to be copied, extended, or entirely remixed.
 
 ---
@@ -126,11 +127,11 @@ The GBE Deck site lets you visually choose which pages to include in your custom
 <table>
   <tr>
     <td align="center">
-      <img src="Pages/General/Programs/screenshot.png" alt="Programs" /><br/>
+      <img src="Pages/Essentials/Programs/screenshot.png" alt="Programs" /><br/>
       <strong>Programs</strong>
     </td>
     <td align="center">
-      <img src="Pages/Web Browser/Web Browser Controls/screenshot.png" alt="Web Browser" /><br/>
+      <img src="Pages/Web Browser/Google Chrome/screenshot.png" alt="Web Browser" /><br/>
       <strong>Web Browser</strong>
     </td>
   </tr>
@@ -140,17 +141,17 @@ The GBE Deck site lets you visually choose which pages to include in your custom
       <strong>Discord</strong>
     </td>
     <td align="center">
-      <img src="Pages/General/File Explorer/screenshot.png" alt="File Explorer" /><br/>
+      <img src="Pages/Essentials/File Explorer/screenshot.png" alt="File Explorer" /><br/>
       <strong>File Explorer</strong>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="Pages/General/Games/screenshot.png" alt="Games" /><br/>
+      <img src="Pages/Essentials/Games/screenshot.png" alt="Games" /><br/>
       <strong>Games</strong>
     </td>
     <td align="center">
-      <img src="Pages/General/Quick Controls/screenshot.png" alt="Quick Controls" /><br/>
+      <img src="Pages/Essentials/Quick Controls/screenshot.png" alt="Quick Controls" /><br/>
       <strong>Quick Controls</strong>
     </td>
   </tr>
