@@ -107,6 +107,7 @@ function App() {
               link.download = asset.name;
               link.click();
               setShowSuccessOverlay(true);
+              window.scrollTo({ top: 0, behavior: "instant" });
               return;
             } else {
               console.log("🕒 Asset found but too old — still waiting");
