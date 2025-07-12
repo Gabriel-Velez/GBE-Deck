@@ -217,7 +217,10 @@ function App() {
 
       {showSuccessOverlay && (
         <DownloadSuccessOverlay
-          onClose={() => setShowSuccessOverlay(false)}
+          onClose={() => {
+            setShowSuccessOverlay(false);
+            setSelectedPages([]);
+          }}
           uniqueDependencies={uniqueDependencies}
         />
       )}
