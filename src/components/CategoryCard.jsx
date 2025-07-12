@@ -31,6 +31,7 @@ function CategoryCard({
                 checked={isChecked}
                 onChange={() => togglePage(page.meta.name)}
                 disabled={isBundling}
+                aria-label={`Select ${page.meta.name} page`}
               />
             </label>
 
