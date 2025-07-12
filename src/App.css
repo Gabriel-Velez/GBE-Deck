@@ -346,7 +346,7 @@ body.no-scroll {
 
 .dependencies-panel {
   padding: 1.5rem;
-  background: #1c1c1c;
+  background-color: var(--bg-panel);
   border-radius: 8px;
 }
 
