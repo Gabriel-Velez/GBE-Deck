@@ -106,11 +106,13 @@ body.no-scroll {
 
 .card-checkbox-area {
   border-right: 1px var(--border) solid;
+  cursor: pointer;
 }
 .card-item input {
   width: 50px;
   height: 50px;
   transform: scale(0.4);
+  cursor: pointer;
 }
 
 /* === DOWNLOAD BUTTON === */
@@ -245,6 +247,19 @@ body.no-scroll {
   font-weight: 700;
   font-family: "avenir-next-lt-pro-condensed", sans-serif;
   font-style: normal;
+}
+
+.info-button {
+  cursor: pointer;
+  float: right;
+  padding: 5px 10px;
+  font-size: 1.7rem;
+  transition: color 0.5s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.info-button:hover {
+  color: var(--accent);
 }
 
 .version-pill {

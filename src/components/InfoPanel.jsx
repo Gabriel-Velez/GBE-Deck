@@ -11,6 +11,7 @@ export default function InfoPanel({
   statusMessage,
   uniqueDependencies,
   progress,
+  setSelectedPage,
 }) {
   const selectedCount = selectedPages.length;
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
@@ -141,7 +142,18 @@ export default function InfoPanel({
               <p>
                 <strong>By:</strong> {selectedPage.meta.author}
               </p>
-              <p>{selectedPage.meta.description}</p>
+              <p>
+                {selectedPage.meta.description}{" "}
+                <div
+                  className='info-button'
+                  onClick={() => setSelectedPage(null)}
+                  role='button'
+                  aria-label='Back to main info'
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && setSelectedPage(null)}>
+                  ⓘ
+                </div>
+              </p>
             </>
           ) : (
             <>
@@ -163,6 +175,12 @@ export default function InfoPanel({
                   Touch Portal
                 </a>{" "}
                 is free on Windows and macOS.
+              </p>
+              <p>
+                Want to contribute or view the source?{" "}
+                <a href='https://github.com/Gabriel-Velez/GBE-Deck' target='_blank'>
+                  View it on GitHub!
+                </a>
               </p>
             </>
           )}

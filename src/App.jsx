@@ -209,6 +209,7 @@ function App() {
             statusMessage={statusMessage}
             uniqueDependencies={uniqueDependencies}
             progress={progress}
+            setSelectedPage={setSelectedPage}
           />
         </>
       )}
