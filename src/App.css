@@ -1,8 +1,26 @@
 :root {
+  --bg: #242424;
+
   --bg-panel: #1a1a1a;
   --border: #333;
+
+  --search: #2a2a2a;
+
+  --button: #444;
+  --disabled: #555;
+
   --accent: #4ea5d9;
+  --accent-hover: #3a93c2;
+
+  --link: #4ea5d9;
+  --link-hover: #3a93c2;
+
   --text: #f0f0f0;
+
+  --progres-gradient-start: #4facfe;
+  --progres-gradient-end: #00f2fe;
+
+  --check-mark: #0fbb0f;
 }
 
 html {
@@ -75,14 +93,14 @@ body.no-scroll {
 
 .card-header button:disabled,
 .select-all-btn:disabled {
-  background-color: #555;
+  background-color: var(--disabled);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
 .card-header button:disabled:hover,
 .select-all-btn:disabled:hover {
-  background-color: #555;
+  background-color: var(--disabled);
 }
 
 .card-item {
@@ -135,11 +153,11 @@ body.no-scroll {
 }
 
 .submit-button:hover {
-  background-color: #3a93c2;
+  background-color: var(--accent-hover);
 }
 
 .submit-button:disabled {
-  background-color: #555; /* muted gray for disabled */
+  background-color: var(--disabled);
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -147,7 +165,7 @@ body.no-scroll {
 /* === SELECT ALL BUTTON === */
 .select-all-btn {
   background-color: var(--accent);
-  color: white;
+  color: var(--text);
   font-weight: bold;
   font-size: 1rem;
   padding: 0.6rem 1.2rem;
@@ -158,14 +176,14 @@ body.no-scroll {
 }
 
 .select-all-btn:hover {
-  background-color: #3a93c2;
+  background-color: var(--accent-hover);
 }
 
 /* === STATUS MESSAGE === */
 .download-footer p {
   margin: 0.5rem 0 0;
   font-size: 0.9rem;
-  color: #ccc;
+  color: var(--text);
 }
 
 /* === INFO PANEL === */
@@ -195,7 +213,7 @@ body.no-scroll {
 .screenshot-placeholder {
   width: 100%;
   aspect-ratio: 4 / 3;
-  background: #333;
+  background: var(--border);
   border-radius: 8px;
 }
 
@@ -222,7 +240,7 @@ body.no-scroll {
 
 .carousel-controls button {
   background: transparent;
-  color: #fff;
+  color: var(--text);
   border: none;
   cursor: pointer;
   border-radius: 4px;
@@ -263,12 +281,12 @@ body.no-scroll {
 }
 
 .version-pill {
-  background: #444;
+  background: var(--button);
   padding: 0.25rem 0.6rem;
   border-radius: 6px;
   font-size: 0.8rem;
   margin-left: auto;
-  color: #fff;
+  color: var(--text);
   height: fit-content;
 }
 
@@ -292,7 +310,7 @@ body.no-scroll {
 
 .select-all-btn {
   background-color: var(--border);
-  color: white;
+  color: var(--text);
   border: none;
   border-radius: 6px;
   padding: 0.6rem 1.2rem;
@@ -317,7 +335,7 @@ body.no-scroll {
   display: flex;
   gap: 1rem;
   padding-top: 2rem;
-  background: #242424;
+  background: var(--bg);
 }
 
 .search-bar {
@@ -325,23 +343,19 @@ body.no-scroll {
   border: none;
   border-radius: 8px;
   font-size: 1rem;
-  background: #2a2a2a;
+  background: var(--search);
   color: white;
   width: 100%;
   top: 0;
 }
 
 .clear-search {
-  background: #2a2a2a;
+  background: var(--search);
   border: none;
-  color: #ccc;
+  color: var(--text);
   font-size: 1.2rem;
   cursor: pointer;
   z-index: 10;
-}
-
-.clear-search:hover {
-  color: #fff;
 }
 
 .dependencies-panel {
@@ -355,7 +369,7 @@ body.no-scroll {
   margin-bottom: 1rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #f0f0f0;
+  color: var(--text);
 }
 
 .dependencies-panel ul {
@@ -367,22 +381,22 @@ body.no-scroll {
 .dependencies-panel li {
   margin-bottom: 1rem;
   line-height: 1.5;
-  color: #ddd;
+  color: var(--text);
 }
 
 .dependencies-panel li strong {
-  color: #fff;
+  color: var(--text);
 }
 
 .dependencies-panel a {
   display: inline-block;
   margin-top: 0.3rem;
-  color: #4da6ff;
+  color: var(--link);
   text-decoration: underline;
 }
 
 .dependencies-panel a:hover {
-  color: #66ccff;
+  color: var(--link-hover);
 }
 
 .progress-container {
@@ -398,7 +412,12 @@ body.no-scroll {
   height: 100%;
   width: 0%;
   border-radius: 6px;
-  background: linear-gradient(270deg, #4facfe, #00f2fe, #4facfe);
+  background: linear-gradient(
+    270deg,
+    var(--progres-gradient-start),
+    var(--progres-gradient-end),
+    var(--progres-gradient-start)
+  );
   background-size: 600% 600%;
   animation: gradientShift 6s ease infinite;
   transition: width 0.3s ease;
@@ -420,7 +439,6 @@ body.no-scroll {
   background: var(--bg-panel);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
 }
 
 .checkmark-wrapper {
@@ -430,7 +448,7 @@ body.no-scroll {
 }
 
 .checkmark {
-  stroke: green;
+  stroke: var(--check-mark);
   stroke-dashoffset: 745.74853515625;
   stroke-dasharray: 745.74853515625;
   animation: dash 3.5s ease forwards;
@@ -472,7 +490,7 @@ body.no-scroll {
 .icon-pack-link {
   display: inline-block;
   background-color: var(--accent);
-  color: white;
+  color: var(--text);
   font-weight: bold;
   font-size: 1rem;
   padding: 0.6rem 1.2rem;
@@ -483,8 +501,8 @@ body.no-scroll {
 }
 
 .icon-pack-link:hover {
-  color: white;
-  background-color: #3a93c2;
+  color: var(--text);
+  background-color: var(--accent-hover);
 }
 
 .success-flex {
@@ -512,7 +530,7 @@ body.no-scroll {
   position: absolute;
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--text);
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
@@ -617,7 +635,7 @@ body.no-scroll {
   top: 1rem;
   right: 1rem;
   z-index: 9999;
-  background-color: var(--accent, #007acc);
+  background-color: var(--accent);
   color: white;
   border: none;
   border-radius: 6px;
@@ -629,5 +647,5 @@ body.no-scroll {
 }
 
 .dev-toggle:hover {
-  background-color: #3a93c2;
+  background-color: var(--accent-hover);
 }
