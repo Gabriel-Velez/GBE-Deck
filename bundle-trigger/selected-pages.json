@@ -1,7 +1,32 @@
 {
   "pages": [
-    "Games"
+    "File Explorer",
+    "Games",
+    "Main Menu",
+    "Programs",
+    "Quick Controls",
+    "Button Lists",
+    "Templates",
+    "Google Chrome",
+    "Youtube",
+    "Spotify",
+    "Youtube Music",
+    "Adobe Tools (Menu)",
+    "Illustrator Tools",
+    "Photoshop Tools",
+    "Discord",
+    "Zoom",
+    "Coding Tools (Menu)",
+    "CSS",
+    "GIT",
+    "HTML",
+    "JavaScript",
+    "Markdown",
+    "Python",
+    "Regex",
+    "SQL",
+    "Terminal"
   ],
-  "timestamp": 1752525403870,
-  "bundleId": "l3bknt09"
+  "timestamp": 1752546912980,
+  "bundleId": "cmuuou0q"
 }
