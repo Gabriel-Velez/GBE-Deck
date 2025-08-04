@@ -1,20 +1,16 @@
 {
   "pages": [
-    "Python",
-    "Regex",
+    "CSS",
     "Coding Tools (Menu)",
     "GIT",
+    "HTML",
+    "JavaScript",
     "Markdown",
-    "Terminal",
-    "Google Chrome",
-    "Youtube",
-    "Button Lists",
-    "Quick Controls",
-    "Programs",
-    "Main Menu",
-    "Games",
-    "File Explorer"
+    "Python",
+    "Regex",
+    "SQL",
+    "Terminal"
   ],
-  "timestamp": 1754315775331,
-  "bundleId": "f3k1k8xt"
+  "timestamp": 1754316475970,
+  "bundleId": "bt6ejigb"
 }
