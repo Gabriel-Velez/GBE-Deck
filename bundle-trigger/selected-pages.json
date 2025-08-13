@@ -1,21 +1,13 @@
 {
   "pages": [
-    "File Explorer",
     "Games",
     "Main Menu",
     "Programs",
     "Quick Controls",
     "Button Lists",
-    "Templates",
-    "Youtube Music",
-    "Photoshop Tools",
-    "Discord",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "Markdown",
-    "SQL"
+    "Spotify",
+    "Discord"
   ],
-  "timestamp": 1754711606009,
-  "bundleId": "zx0raia6"
+  "timestamp": 1755089423314,
+  "bundleId": "6ro3rnye"
 }
