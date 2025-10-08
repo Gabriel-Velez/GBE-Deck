@@ -1,7 +1,25 @@
 {
   "pages": [
-    "Quick Controls"
+    "File Explorer",
+    "Games",
+    "Main Menu",
+    "Programs",
+    "Quick Controls",
+    "Button Lists",
+    "Templates",
+    "Spotify",
+    "Youtube Music",
+    "CSS",
+    "Coding Tools (Menu)",
+    "GIT",
+    "HTML",
+    "JavaScript",
+    "Markdown",
+    "Python",
+    "Regex",
+    "SQL",
+    "Terminal"
   ],
-  "timestamp": 1757820222914,
-  "bundleId": "yifel8g4"
+  "timestamp": 1759942594320,
+  "bundleId": "u5lv5qb1"
 }
