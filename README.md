@@ -240,9 +240,7 @@ YouTube, Netflix, Twitch, Gmail, Google Docs Sheets and Slides, GitHub, LinkedIn
 - **Last Page**: `< # ]` — active left, inactive right
 - **Single Page**: `[ 1 ]` — no arrows, standalone
 
----
-
-## Navigation & Lock Logic:
+### Navigation & Lock Logic:
 
 - **Automatic page switching** takes you to the correct page when its corresponding window is active.
 
