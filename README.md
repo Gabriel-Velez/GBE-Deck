@@ -250,8 +250,6 @@ YouTube, Netflix, Twitch, Gmail, Google Docs Sheets and Slides, GitHub, LinkedIn
 
 - Arrows (`<`, `>`) move between multi-page sections.
 
----
-
 | Element                 | Behavior                                  |
 | ----------------------- | ----------------------------------------- |
 | **← Arrow**             | Return to parent page                     |
