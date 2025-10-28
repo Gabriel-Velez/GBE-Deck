@@ -1,8 +1,17 @@
 {
   "pages": [
+    "Discord",
+    "Spotify",
     "Youtube",
-    "Youtube Music"
+    "Google Chrome",
+    "Templates",
+    "Button Lists",
+    "Quick Controls",
+    "Programs",
+    "Main Menu",
+    "Games",
+    "File Explorer"
   ],
-  "timestamp": 1761658071375,
-  "bundleId": "0w35zq7w"
+  "timestamp": 1761674576378,
+  "bundleId": "7vaefyum"
 }
