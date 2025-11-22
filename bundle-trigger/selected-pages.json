@@ -1,10 +1,5 @@
 {
-  "pages": [
-    "Discord",
-    "Zoom",
-    "Photoshop Tools",
-    "Illustrator Tools"
-  ],
-  "timestamp": 1763604174784,
-  "bundleId": "86h68hd2"
+  "query": "query IntrospectionQuery{__schema{queryType{name} types{name}}}",
+  "timestamp": 1763770480238,
+  "bundleId": "t8o9bs05"
 }
