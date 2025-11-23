@@ -1,11 +1,17 @@
 {
   "pages": [
-    "File Explorer",
-    "Games",
-    "Main Menu",
-    "Programs",
-    "Quick Controls"
+    "Button Lists",
+    "Templates",
+    "Google Chrome",
+    "Youtube",
+    "Spotify",
+    "Youtube Music",
+    "Adobe Tools (Menu)",
+    "Illustrator Tools",
+    "Photoshop Tools",
+    "Discord",
+    "Zoom"
   ],
-  "timestamp": 1763877554005,
-  "bundleId": "cdil6ppy"
+  "timestamp": 1763877661349,
+  "bundleId": "sqjx325p"
 }
