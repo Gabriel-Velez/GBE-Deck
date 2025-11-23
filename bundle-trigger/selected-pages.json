@@ -1,5 +1,11 @@
 {
-  "query": "query IntrospectionQuery{__schema{queryType{name} types{name}}}",
-  "timestamp": 1763770485965,
-  "bundleId": "v04krp7e"
+  "pages": [
+    "File Explorer",
+    "Games",
+    "Main Menu",
+    "Programs",
+    "Quick Controls"
+  ],
+  "timestamp": 1763877554005,
+  "bundleId": "cdil6ppy"
 }
