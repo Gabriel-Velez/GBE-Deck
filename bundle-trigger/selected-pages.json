@@ -1,28 +1,16 @@
 {
   "pages": [
     "File Explorer",
+    "Games",
     "Main Menu",
     "Programs",
     "Quick Controls",
-    "Button Lists",
-    "Templates",
-    "Google Chrome",
     "Youtube",
+    "Google Chrome",
     "Spotify",
     "Youtube Music",
-    "Discord",
-    "Zoom",
-    "CSS",
-    "Coding Tools (Menu)",
-    "GIT",
-    "HTML",
-    "JavaScript",
-    "Markdown",
-    "Python",
-    "Regex",
-    "SQL",
-    "Terminal"
+    "Discord"
   ],
-  "timestamp": 1764228656953,
-  "bundleId": "120nvo1a"
+  "timestamp": 1764269840263,
+  "bundleId": "vtz7xt6v"
 }
