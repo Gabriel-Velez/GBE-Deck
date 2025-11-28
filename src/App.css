@@ -67,7 +67,7 @@ body.no-scroll {
   border-radius: 12px;
   padding: 2rem;
   color: var(--fg-light);
-  width: 100%; /* KEEPING your original width here */
+  width: 100%; 
 }
 .category-card:last-of-type {
   margin-bottom: 2rem;

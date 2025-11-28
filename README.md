@@ -240,9 +240,7 @@ YouTube, Netflix, Twitch, Gmail, Google Docs Sheets and Slides, GitHub, LinkedIn
 - **Last Page**: `< # ]` — active left, inactive right
 - **Single Page**: `[ 1 ]` — no arrows, standalone
 
----
-
-## Navigation & Lock Logic:
+### Navigation & Lock Logic:
 
 - **Automatic page switching** takes you to the correct page when its corresponding window is active.
 
@@ -251,8 +249,6 @@ YouTube, Netflix, Twitch, Gmail, Google Docs Sheets and Slides, GitHub, LinkedIn
 - Lock 🔒 / Unlock 🔓 buttons toggle whether the tablet stays on a page.
 
 - Arrows (`<`, `>`) move between multi-page sections.
-
----
 
 | Element                 | Behavior                                  |
 | ----------------------- | ----------------------------------------- |

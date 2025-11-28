@@ -1,8 +1,16 @@
 {
   "pages": [
-    "Button Lists",
-    "Templates"
+    "File Explorer",
+    "Games",
+    "Main Menu",
+    "Programs",
+    "Quick Controls",
+    "Youtube",
+    "Google Chrome",
+    "Spotify",
+    "Youtube Music",
+    "Discord"
   ],
-  "timestamp": 1752351493892,
-  "bundleId": "e64gcsx3"
+  "timestamp": 1764269840263,
+  "bundleId": "vtz7xt6v"
 }
