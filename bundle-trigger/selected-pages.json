@@ -1,8 +1,24 @@
 {
   "pages": [
+    "Adobe Tools (Menu)",
+    "Illustrator Tools",
+    "Photoshop Tools",
+    "Google Chrome",
+    "Discord",
+    "Zoom",
+    "CSS",
+    "Coding Tools (Menu)",
+    "GIT",
+    "HTML",
+    "JavaScript",
+    "Markdown",
+    "Python",
+    "Regex",
+    "SQL",
+    "Terminal",
     "Spotify",
     "Youtube Music"
   ],
-  "timestamp": 1764776030719,
-  "bundleId": "m9mcgjvv"
+  "timestamp": 1764776098109,
+  "bundleId": "b68ttvxc"
 }
