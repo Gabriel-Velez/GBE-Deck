@@ -1,22 +1,16 @@
 {
   "pages": [
-    "File Explorer",
-    "Main Menu",
-    "Programs",
-    "Quick Controls",
     "Button Lists",
-    "Templates",
-    "CSS",
-    "Coding Tools (Menu)",
-    "GIT",
-    "HTML",
-    "JavaScript",
-    "Markdown",
-    "Python",
-    "Regex",
-    "SQL",
-    "Terminal"
+    "Quick Controls",
+    "Programs",
+    "Main Menu",
+    "Games",
+    "File Explorer",
+    "Youtube",
+    "Google Chrome",
+    "Spotify",
+    "Youtube Music"
   ],
-  "timestamp": 1768409745379,
-  "bundleId": "8ycm010u"
+  "timestamp": 1768673363050,
+  "bundleId": "fzoom614"
 }
