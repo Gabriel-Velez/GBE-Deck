@@ -1,16 +1,32 @@
 {
   "pages": [
-    "Button Lists",
-    "Quick Controls",
-    "Programs",
-    "Main Menu",
     "Games",
     "File Explorer",
-    "Youtube",
+    "Main Menu",
+    "Programs",
+    "Quick Controls",
+    "Button Lists",
+    "Templates",
     "Google Chrome",
+    "Youtube",
     "Spotify",
-    "Youtube Music"
+    "Youtube Music",
+    "Photoshop Tools",
+    "Illustrator Tools",
+    "Adobe Tools (Menu)",
+    "Discord",
+    "Zoom",
+    "CSS",
+    "Coding Tools (Menu)",
+    "GIT",
+    "HTML",
+    "JavaScript",
+    "Markdown",
+    "Python",
+    "Regex",
+    "SQL",
+    "Terminal"
   ],
-  "timestamp": 1768673363050,
-  "bundleId": "fzoom614"
+  "timestamp": 1768844530007,
+  "bundleId": "cfm0zkaj"
 }
