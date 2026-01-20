@@ -1,32 +1,5 @@
 {
-  "pages": [
-    "Games",
-    "File Explorer",
-    "Main Menu",
-    "Programs",
-    "Quick Controls",
-    "Button Lists",
-    "Templates",
-    "Google Chrome",
-    "Youtube",
-    "Spotify",
-    "Youtube Music",
-    "Photoshop Tools",
-    "Illustrator Tools",
-    "Adobe Tools (Menu)",
-    "Discord",
-    "Zoom",
-    "CSS",
-    "Coding Tools (Menu)",
-    "GIT",
-    "HTML",
-    "JavaScript",
-    "Markdown",
-    "Python",
-    "Regex",
-    "SQL",
-    "Terminal"
-  ],
-  "timestamp": 1768844530007,
-  "bundleId": "cfm0zkaj"
+  "query": "query IntrospectionQuery{__schema{queryType{name} types{name}}}",
+  "timestamp": 1768868896408,
+  "bundleId": "30dh49mk"
 }
