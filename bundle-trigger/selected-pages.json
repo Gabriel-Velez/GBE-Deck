@@ -1,5 +1,5 @@
 {
   "query": "query IntrospectionQuery{__schema{queryType{name} types{name}}}",
-  "timestamp": 1768868898834,
-  "bundleId": "vj1o385m"
+  "timestamp": 1768868899583,
+  "bundleId": "2winzq89"
 }
