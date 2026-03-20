@@ -1,25 +1,5 @@
 {
-  "pages": [
-    "File Explorer",
-    "Games",
-    "Main Menu",
-    "Programs",
-    "Quick Controls",
-    "Button Lists",
-    "Templates",
-    "Youtube",
-    "Youtube Music",
-    "Coding Tools (Menu)",
-    "CSS",
-    "GIT",
-    "Terminal",
-    "HTML",
-    "JavaScript",
-    "Markdown",
-    "Python",
-    "Regex",
-    "SQL"
-  ],
-  "timestamp": 1771899550184,
-  "bundleId": "8ty6yt7d"
+  "query": "query IntrospectionQuery{__schema{queryType{name} types{name} directives{name}}}",
+  "timestamp": 1773967566401,
+  "bundleId": "8oposrcl"
 }
