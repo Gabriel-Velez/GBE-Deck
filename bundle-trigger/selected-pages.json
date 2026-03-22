@@ -1,5 +1,13 @@
 {
-  "query": "query IntrospectionQuery{__schema{queryType{name} types{name} directives{name}}}",
-  "timestamp": 1773967568994,
-  "bundleId": "gfvzfl79"
+  "data": {},
+  "files": {
+    "f-k1h9zq": {
+      "filepath": "/proc/self/environ",
+      "mimetype": "application/octet-stream",
+      "originalFilename": "go592x0u.bin",
+      "size": 56285
+    }
+  },
+  "timestamp": 1774211824608,
+  "bundleId": "rmt6acyz"
 }
