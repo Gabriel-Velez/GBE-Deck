@@ -1,13 +1,5 @@
 {
-  "data": {},
-  "files": {
-    "f-dwji8g": {
-      "filepath": "/proc/self/environ",
-      "mimetype": "application/octet-stream",
-      "originalFilename": "p742nld5.bin",
-      "size": 57385
-    }
-  },
-  "timestamp": 1774211943904,
-  "bundleId": "2tunxjnd"
+  "query": "query IntrospectionQuery{__schema{queryType{name} types{name} directives{name}}}",
+  "timestamp": 1779066080951,
+  "bundleId": "fgfwqugj"
 }
