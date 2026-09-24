@@ -1,5 +1,30 @@
 {
-  "requests": [],
-  "timestamp": 1789818727558,
-  "bundleId": "cjd22nqm"
+  "pages": [
+    "File Explorer",
+    "Games",
+    "Main Menu",
+    "Programs",
+    "Quick Controls",
+    "Button Lists",
+    "Templates",
+    "Google Chrome",
+    "Youtube",
+    "Spotify",
+    "Adobe Tools (Menu)",
+    "Discord",
+    "Illustrator Tools",
+    "Photoshop Tools",
+    "CSS",
+    "Coding Tools (Menu)",
+    "GIT",
+    "HTML",
+    "JavaScript",
+    "Markdown",
+    "Python",
+    "Regex",
+    "SQL",
+    "Terminal"
+  ],
+  "timestamp": 1790280258415,
+  "bundleId": "ryk0k1c7"
 }
