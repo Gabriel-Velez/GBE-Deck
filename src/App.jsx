@@ -138,7 +138,8 @@ function App() {
 
               if (asset) {
                 setIsBundling(false);
-                setProgress(100);
+                setProgress(0);
+                setStatusMessage("");
                 setBundleFilename(asset.name);
 
                 const link = document.createElement("a");
@@ -277,7 +278,8 @@ function App() {
         <DownloadSuccessOverlay
           onClose={() => {
             setShowSuccessOverlay(false);
-            setSelectedPages([]);
+            setStatusMessage("");
+            setProgress(0);
           }}
           uniqueDependencies={uniqueDependencies}
           bundleFilename={bundleFilename}

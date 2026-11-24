@@ -98,9 +98,14 @@ export default function InfoPanel({
           <button className='select-all-btn' onClick={handleGlobalToggle} disabled={isBundling}>
             {areAllVisiblePagesSelected() ? "Deselect\u00A0All" : "Select\u00A0All"}
           </button>
-          <div className='info-toggle' onClick={() => setIsExpanded(!isExpanded)}>
-            <span>{isExpanded ? "▼" : "▲"}</span>
-          </div>
+          <button
+            type='button'
+            className='info-toggle'
+            onClick={() => setIsExpanded((prev) => !prev)}
+            aria-label={isExpanded ? "Collapse info panel" : "Expand info panel"}
+            aria-expanded={isExpanded}>
+            <span aria-hidden='true'>▲</span>
+          </button>
         </div>
         {isBundling && (
           <div className='progress-container'>

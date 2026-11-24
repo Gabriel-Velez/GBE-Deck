@@ -67,7 +67,7 @@ body.no-scroll {
   border-radius: 12px;
   padding: 2rem;
   color: var(--fg-light);
-  width: 100%; 
+  width: 100%;
 }
 .category-card:last-of-type {
   margin-bottom: 2rem;
@@ -148,7 +148,9 @@ body.no-scroll {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease, opacity 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
   width: 100%;
 }
 
@@ -198,6 +200,7 @@ body.no-scroll {
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
   padding-right: 0.5rem;
+  transition: 0.5s ease;
 }
 
 .info-content {
@@ -568,62 +571,115 @@ body.no-scroll {
   }
 
   .category-card:last-of-type {
-    margin-bottom: calc(4rem + 150px);
+    margin-bottom: calc(4rem + 12rem);
   }
 
   .info-panel {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
     position: fixed;
+    top: auto;
     left: 0;
     right: 0;
     bottom: 0;
-    height: (100vh - env(safe-area-inset-bottom));
+    height: auto;
+    max-height: calc(100vh - env(safe-area-inset-bottom));
+    max-height: calc(100dvh - env(safe-area-inset-bottom));
     width: 100%;
+    padding-right: 0;
+    box-sizing: border-box;
     background-color: var(--bg-panel);
     z-index: 10;
-    transform: translateY(calc(100% - 10rem));
-    transition: transform 0.3s ease;
     overflow: hidden;
   }
 
-  .info-panel.expanded {
-    transform: translateY(5%);
+  .info-panel.collapsed {
+    overflow-y: auto;
   }
 
   .info-toggle {
-    display: block;
+    display: flex;
+    flex: 0 0 3rem;
+    align-items: center;
+    justify-content: center;
     background: var(--border);
+    border: 0;
     border-radius: 6px;
-    padding: 0.6rem 1.2rem;
+    color: var(--text);
+    font: inherit;
+    height: 2.75rem;
+    padding: 0;
     cursor: pointer;
-    width: 5%;
-    text-align: center;
+  }
+
+  .info-toggle span {
+    display: block;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .info-panel.expanded .info-toggle span {
+    transform: rotate(180deg);
   }
 
   .info-panel.collapsed .info-content {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .info-content {
     padding: 0.6rem 1.2rem;
     overflow-y: auto;
-    height: calc(100% - 60px);
-    margin-top: 10rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    max-height: 0;
+    margin-top: 0;
     position: relative;
-    width: 85vw;
+    width: 100%;
+    box-sizing: border-box;
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease,
+      visibility 0s linear 0.3s;
   }
+
+  .info-panel.expanded .info-content {
+    max-height: calc(90vh - 12rem);
+    max-height: calc(90dvh - 12rem);
+    padding: 0.6rem 1.2rem;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease,
+      visibility 0s;
+  }
+
   .download-footer {
-    position: sticky;
-    bottom: 0;
+    position: relative;
+    inset: auto;
+    flex: 0 0 auto;
     background: var(--bg-panel);
-    position: fixed;
-    top: 0;
-    height: fit-content;
-    width: 85vw;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
   }
   .info-content > *:last-child {
     margin-bottom: 4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-content,
+  .info-toggle span {
+    transition: none;
   }
 }
 
