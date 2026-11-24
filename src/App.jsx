@@ -54,8 +54,8 @@ function App() {
 
   const handleDownload = async () => {
     setIsBundling(true);
-    setProgress(5);
-    setStatusMessage("");
+    setProgress(0);
+    setStatusMessage("Waiting for GitHub Actions...");
     setBundleFilename("");
 
     try {
@@ -74,7 +74,6 @@ function App() {
         throw new Error("Worker did not return a bundle request ID");
       }
 
-      setProgress(10);
       pollForReleaseAndDownload(requestId);
     } catch (error) {
       console.error("Download error:", error);
@@ -86,40 +85,95 @@ function App() {
 
   const pollForReleaseAndDownload = (requestId) => {
     const tag = `gbe-bundle-${requestId}`;
-    const url = `https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases/tags/${tag}`;
+    const repository = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck";
+    const workflowRunsUrl = `${repository}/actions/workflows/bundle-tpz.yml/runs?event=workflow_dispatch&per_page=100`;
+    const releaseUrl = `${repository}/releases/tags/${tag}`;
     let attempts = 0;
     const maxAttempts = 30;
+    let runId = null;
 
     const poll = async () => {
       attempts++;
 
       try {
-        const res = await fetch(url);
-        if (res.ok) {
-          const release = await res.json();
-          const asset = release.assets.find((item) => item.name.endsWith(".tpz2"));
-
-          if (asset) {
-            setIsBundling(false);
-            setProgress(100);
-            setBundleFilename(asset.name);
-
-            const link = document.createElement("a");
-            link.href = asset.browser_download_url;
-            link.download = asset.name;
-            link.click();
-            setShowSuccessOverlay(true);
-            window.scrollTo({ top: 0, behavior: "instant" });
-            return;
+        if (!runId) {
+          const runsResponse = await fetch(workflowRunsUrl);
+          if (!runsResponse.ok) {
+            throw new Error(`Workflow run lookup failed: ${runsResponse.status}`);
           }
-        } else if (res.status !== 404) {
-          console.error(`Release polling failed: ${res.status} ${await res.text()}`);
+
+          const { workflow_runs: runs } = await runsResponse.json();
+          const run = runs.find((item) => item.display_title === `GBE Deck bundle ${requestId}`);
+          if (run) {
+            runId = run.id;
+          }
+        }
+
+        if (runId) {
+          const jobsResponse = await fetch(`${repository}/actions/runs/${runId}/jobs?per_page=100`);
+          if (!jobsResponse.ok) {
+            throw new Error(`Workflow progress lookup failed: ${jobsResponse.status}`);
+          }
+
+          const { jobs } = await jobsResponse.json();
+          const steps = jobs.flatMap((job) => job.steps || []);
+          const completedSteps = steps.filter((step) => step.status === "completed").length;
+          const workflowComplete = jobs.length > 0 && jobs.every((job) => job.status === "completed");
+
+          if (workflowComplete) {
+            const failedJob = jobs.find((job) => job.conclusion !== "success");
+            if (failedJob) {
+              setStatusMessage("❌ GitHub Actions build failed. Check the workflow logs.");
+              setIsBundling(false);
+              setProgress(0);
+              return;
+            }
+
+            setProgress(98);
+            setStatusMessage("Preparing your download...");
+            const releaseResponse = await fetch(releaseUrl);
+            if (releaseResponse.ok) {
+              const release = await releaseResponse.json();
+              const asset = release.assets.find((item) => item.name.endsWith(".tpz2"));
+
+              if (asset) {
+                setIsBundling(false);
+                setProgress(100);
+                setBundleFilename(asset.name);
+
+                const link = document.createElement("a");
+                link.href = asset.browser_download_url;
+                link.download = asset.name;
+                link.click();
+                setShowSuccessOverlay(true);
+                window.scrollTo({ top: 0, behavior: "instant" });
+                return;
+              }
+            } else if (releaseResponse.status !== 404) {
+              throw new Error(`Release lookup failed: ${releaseResponse.status}`);
+            }
+          } else {
+            setProgress(
+              steps.length ? Math.floor((completedSteps / steps.length) * 95) : 0
+            );
+            const activeStep = steps.find((step) => step.status === "in_progress");
+            setStatusMessage(
+              (activeStep
+                ? `${activeStep.name} (${completedSteps}/${steps.length} steps complete)`
+                : null) ||
+                (jobs.every((job) => job.status === "queued")
+                  ? "Queued for a GitHub Actions runner..."
+                  : "Waiting for the next workflow step...")
+            );
+          }
+        } else {
+          setStatusMessage("Waiting for GitHub Actions to start...");
         }
       } catch (err) {
         console.error("Polling error:", err);
+        setStatusMessage("Checking GitHub Actions progress...");
       }
 
-      setProgress(Math.min((attempts / maxAttempts) * 95, 95));
       if (attempts >= maxAttempts) {
         setStatusMessage("❌ Build timed out. Check the bundle workflow in GitHub Actions.");
         setIsBundling(false);

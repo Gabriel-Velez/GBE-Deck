@@ -28,7 +28,7 @@ The GBE Deck site lets you visually choose which pages to include in your custom
 
 🌐 [GBEdeck.com](https://gabriel-velez.github.io/GBE-Deck/)
 
-Each download request starts the `Build custom Touch Portal bundle` GitHub Actions workflow. The workflow combines the selected pages into one `.tpz2` file and publishes it as a uniquely tagged GitHub Release, so simultaneous requests do not overwrite each other's downloads. The filename includes up to three selected page names, a count of any remaining pages, and a short unique suffix. Old bundle releases can be deleted from the repository's Releases page when they are no longer needed.
+Each download request starts the `Build custom Touch Portal bundle` GitHub Actions workflow. The workflow combines the selected pages into one `.tpz2` file and publishes it as a uniquely tagged GitHub Release, so simultaneous requests do not overwrite each other's downloads. The loading bar follows completed workflow steps and shows the active step, rather than estimating progress from elapsed time. The filename includes up to three selected page names, a count of any remaining pages, and a short unique suffix. Old bundle releases can be deleted from the repository's Releases page when they are no longer needed.
 
 The Cloudflare Worker must have a `GITHUB_TOKEN` secret with permission to dispatch repository Actions workflows (`Actions: write`). The workflow itself uses its `GITHUB_TOKEN` with `contents: write` to publish the release.
 
