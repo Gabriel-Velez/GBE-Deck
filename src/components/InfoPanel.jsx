@@ -108,8 +108,19 @@ export default function InfoPanel({
           </button>
         </div>
         {isBundling && (
-          <div className='progress-container'>
+          <div
+            className='progress-container'
+            role='progressbar'
+            aria-label='Bundle build progress'
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={progress}>
             <div className='progress-bar' style={{ width: `${progress}%` }}></div>
+            <div
+              className='progress-activity'
+              aria-hidden='true'
+              style={{ left: `${progress}%`, width: `${Math.min(18, 100 - progress)}%` }}
+            />
           </div>
         )}
         <p>{statusMessage}</p>
