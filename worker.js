@@ -1,74 +1,86 @@
-// --- WROKER used in cloudflare for downlaod ---
+const REPOSITORY = "Gabriel-Velez/GBE-Deck";
+const WORKFLOW_ID = "bundle-tpz.yml";
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     if (request.method === "OPTIONS") {
-      return new Response(null, {
-        status: 204,
-        headers: corsHeaders(),
-      });
+      return new Response(null, { status: 204, headers: corsHeaders() });
     }
 
     if (request.method !== "POST") {
       return new Response("Only POST allowed", { status: 405, headers: corsHeaders() });
     }
 
+    let payload;
     try {
-      const data = await request.json();
-
-      // --- CLEANUP REQUEST ---
-      if (data.action === "cleanup") {
-        await cleanupRelease(env);
-        return new Response("Cleanup complete", { status: 200, headers: corsHeaders() });
-      }
-
-      // --- WRITE selected-pages.json to trigger bundle ---
-      const fileUrl =
-        "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/contents/bundle-trigger/selected-pages.json";
-
-      const shaRes = await fetch(fileUrl, {
-        headers: {
-          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-          "User-Agent": "Cloudflare-Worker",
-        },
-      });
-
-      let sha;
-      if (shaRes.ok) {
-        const shaJson = await shaRes.json();
-        sha = shaJson.sha;
-      }
-
-      const payload = {
-        ...data,
-        timestamp: Date.now(), // Force file change
-        bundleId: data.bundleId || Math.random().toString(36).slice(2, 10),
-      };
-
-      const res = await fetch(fileUrl, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-          "Content-Type": "application/json",
-          "User-Agent": "Cloudflare-Worker",
-        },
-        body: JSON.stringify({
-          message: "Trigger bundle from GBE selector",
-          content: btoa(JSON.stringify(payload, null, 2)),
-          ...(sha ? { sha } : {}),
-          committer: { name: "GBE Bot", email: "actions@github.com" },
-        }),
-      });
-
-      if (res.ok) {
-        return new Response("OK", { status: 200, headers: corsHeaders() });
-      }
-
-      const error = await res.text();
-      return new Response(error, { status: 500, headers: corsHeaders() });
-    } catch (err) {
-      return new Response("Error: " + err.message, { status: 500, headers: corsHeaders() });
+      payload = await request.json();
+    } catch {
+      return new Response("Request body must be valid JSON", { status: 400, headers: corsHeaders() });
     }
+
+    const pages = payload?.pages;
+    if (
+      !Array.isArray(pages) ||
+      pages.length === 0 ||
+      !pages.every((page) => typeof page === "string" && page.trim())
+    ) {
+      return new Response("Expected a non-empty pages array", {
+        status: 400,
+        headers: corsHeaders(),
+      });
+    }
+
+    const pagesJson = JSON.stringify(pages);
+    if (pagesJson.length > 60000) {
+      return new Response("Page selection is too large", { status: 413, headers: corsHeaders() });
+    }
+    if (!env.GITHUB_TOKEN) {
+      return new Response("GitHub token is not configured", {
+        status: 500,
+        headers: corsHeaders(),
+      });
+    }
+
+    const requestId = crypto.randomUUID();
+    let response;
+    try {
+      response = await fetch(
+        `https://api.github.com/repos/${REPOSITORY}/actions/workflows/${WORKFLOW_ID}/dispatches`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+            "Content-Type": "application/json",
+            "User-Agent": "GBE-Deck-Worker",
+            Accept: "application/vnd.github+json",
+          },
+          body: JSON.stringify({
+            ref: "main",
+            inputs: {
+              pages: pagesJson,
+              bundle_id: requestId,
+            },
+          }),
+        }
+      );
+    } catch (error) {
+      return new Response(`GitHub workflow dispatch request failed: ${error.message}`, {
+        status: 502,
+        headers: corsHeaders(),
+      });
+    }
+
+    if (!response.ok) {
+      return new Response(`GitHub workflow dispatch failed: ${await response.text()}`, {
+        status: 502,
+        headers: corsHeaders(),
+      });
+    }
+
+    return new Response(JSON.stringify({ requestId }), {
+      status: 202,
+      headers: { ...corsHeaders(), "Content-Type": "application/json" },
+    });
   },
 };
 
@@ -78,27 +90,4 @@ function corsHeaders() {
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
-}
-
-// 🧹 CLEANUP: Only remove the release—not the JSON file
-async function cleanupRelease(env) {
-  const headers = {
-    Authorization: `Bearer ${env.GITHUB_TOKEN}`,
-    "User-Agent": "Cloudflare-Worker",
-  };
-
-  const releasesRes = await fetch("https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases", {
-    headers,
-  });
-  const releases = await releasesRes.json();
-  const release = releases.find((r) => r.tag_name === "GBE-Custom-Bundle");
-
-  if (release) {
-    await fetch(`https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases/${release.id}`, {
-      method: "DELETE",
-      headers,
-    });
-  }
-
-  return true;
 }

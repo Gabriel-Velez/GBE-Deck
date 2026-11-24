@@ -1,4 +1,6 @@
 import json
+import os
+import re
 import zipfile
 import tempfile
 import shutil
@@ -8,13 +10,33 @@ from pathlib import Path
 pages_root = Path("Pages")
 selection_file = Path("bundle-trigger/selected-pages.json")
 
-# Load selected page names and bundleId
-with open(selection_file, "r") as f:
-    selection_data = json.load(f)
+selection_json = os.environ.get("SELECTED_PAGES_JSON")
+if selection_json:
+    selected = json.loads(selection_json)
+    bundle_id = os.environ.get("BUNDLE_ID", "fallback")
+else:
+    with open(selection_file, "r", encoding="utf-8") as f:
+        selection_data = json.load(f)
     selected = selection_data.get("pages", [])
     bundle_id = selection_data.get("bundleId", "fallback")
 
-output_file = Path(f"GBE-Bundle-{bundle_id}.tpz2")
+if (
+    not isinstance(selected, list)
+    or not selected
+    or not all(
+        isinstance(name, str)
+        and name.strip()
+        and name not in {".", ".."}
+        and "/" not in name
+        and "\\" not in name
+        for name in selected
+    )
+):
+    raise ValueError("Selection must contain a non-empty list of page names")
+if not isinstance(bundle_id, str) or not re.fullmatch(r"[A-Za-z0-9-]{1,64}", bundle_id):
+    raise ValueError("Bundle ID may contain only letters, numbers, and hyphens")
+
+output_file = Path("GBE-Custom-Bundle.tpz2")
 
 # Merged data holders
 merged_buttons = []
@@ -42,8 +64,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
 
         tpz_path = find_tpz2_path(name)
         if not tpz_path:
-            print(f"❌ Not found: {name} — skipping")
-            continue
+            raise FileNotFoundError(f"Selected page was not found: {name}")
 
         print(f"✅ Found: {tpz_path}")
         extract_dir = tmpdir_path / name
@@ -105,14 +126,17 @@ with tempfile.TemporaryDirectory() as tmpdir:
         with open(tmpdir_path / "version.json", "w", encoding="utf-8") as f:
             json.dump(version_data, f, indent=2)
 
-        print(f"\n📦 Creating bundle: {output_file}")
-        with zipfile.ZipFile(output_file, 'w') as bundle:
-            for file in tmpdir_path.glob("*.*"):
-                bundle.write(file, arcname=file.name)
-                print(f"📦 Added file: {file.name}")
+    else:
+        raise ValueError("Selected pages did not contain any Touch Portal pages")
 
-            for img_file in final_img_dir.glob("*"):
-                bundle.write(img_file, arcname=img_file.name)
-                print(f"🧷 Added image: {img_file.name}")
+    print(f"\n📦 Creating bundle: {output_file}")
+    with zipfile.ZipFile(output_file, "w") as bundle:
+        for file in tmpdir_path.glob("*.*"):
+            bundle.write(file, arcname=file.name)
+            print(f"📦 Added file: {file.name}")
+
+        for img_file in final_img_dir.glob("*"):
+            bundle.write(img_file, arcname=img_file.name)
+            print(f"🧷 Added image: {img_file.name}")
 
 print(f"\n✅ [DONE] Created bundle: {output_file.resolve()}")

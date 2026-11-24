@@ -1,34 +1,44 @@
-name: Trigger Bundle on JSON Update
+name: Build custom Touch Portal bundle
 
 on:
-  push:
-    paths:
-      - "bundle-trigger/selected-pages.json"
+  workflow_dispatch:
+    inputs:
+      pages:
+        description: JSON array of selected page names
+        required: true
+        type: string
+      bundle_id:
+        description: Unique identifier for this bundle request
+        required: true
+        type: string
+
+permissions:
+  contents: write
 
 jobs:
   bundle:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Run bundler script
+      - name: Build bundle
+        env:
+          SELECTED_PAGES_JSON: ${{ inputs.pages }}
+          BUNDLE_ID: ${{ inputs.bundle_id }}
         run: python bundle_pages_v2.py
 
-      - name: Rename bundle to fixed name
-        run: |
-          mv $(find . -name "GBE-Bundle-*.tpz2") GBE-Custom-Bundle.tpz2
-
-      - name: Upload bundle to release
-        uses: softprops/action-gh-release@v1
+      - name: Publish request-specific download
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: gbe-deck-bundle
+          tag_name: gbe-bundle-${{ inputs.bundle_id }}
+          name: GBE Deck bundle ${{ inputs.bundle_id }}
           files: GBE-Custom-Bundle.tpz2
+          fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

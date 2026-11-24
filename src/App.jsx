@@ -54,8 +54,7 @@ function App() {
   const handleDownload = async () => {
     setIsBundling(true);
     setProgress(5);
-
-    const triggerTime = Date.now();
+    setStatusMessage("");
 
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
@@ -68,65 +67,68 @@ function App() {
         throw new Error(`Worker failed: ${await res.text()}`);
       }
 
+      const { requestId } = await res.json();
+      if (!requestId) {
+        throw new Error("Worker did not return a bundle request ID");
+      }
+
       setProgress(10);
-      pollForReleaseAndDownload(triggerTime);
+      pollForReleaseAndDownload(requestId);
     } catch (error) {
       console.error("Download error:", error);
-      setStatusMessage("❌ Failed to trigger bundle");
+      setStatusMessage(`❌ ${error.message || "Failed to trigger bundle"}`);
       setIsBundling(false);
       setProgress(0);
     }
   };
 
-  const pollForReleaseAndDownload = (triggerTime) => {
-    const url = "https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases";
+  const pollForReleaseAndDownload = (requestId) => {
+    const tag = `gbe-bundle-${requestId}`;
+    const url = `https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases/tags/${tag}`;
     let attempts = 0;
-    const maxAttempts = 18;
-    const expectedFilename = `GBE-Custom-Bundle.tpz2`;
+    const maxAttempts = 30;
+    const expectedFilename = "GBE-Custom-Bundle.tpz2";
 
-    const interval = setInterval(async () => {
+    const poll = async () => {
       attempts++;
 
       try {
         const res = await fetch(url);
-        const releases = await res.json();
-        const target = releases.find((r) => r.tag_name === "gbe-deck-bundle");
-
-        if (target && target.assets.length > 0) {
-          const asset = target.assets.find((a) => a.name === expectedFilename);
+        if (res.ok) {
+          const release = await res.json();
+          const asset = release.assets.find((item) => item.name === expectedFilename);
 
           if (asset) {
-            const assetTime = new Date(asset.updated_at).getTime();
-            if (assetTime >= triggerTime) {
-              clearInterval(interval);
-              setIsBundling(false);
-              setProgress(100);
+            setIsBundling(false);
+            setProgress(100);
 
-              const link = document.createElement("a");
-              link.href = asset.browser_download_url;
-              link.download = asset.name;
-              link.click();
-              setShowSuccessOverlay(true);
-              window.scrollTo({ top: 0, behavior: "instant" });
-              return;
-            } else {
-              console.log("🕒 Asset found but too old — still waiting");
-            }
+            const link = document.createElement("a");
+            link.href = asset.browser_download_url;
+            link.download = asset.name;
+            link.click();
+            setShowSuccessOverlay(true);
+            window.scrollTo({ top: 0, behavior: "instant" });
+            return;
           }
-        }
-
-        setProgress(Math.min((attempts / maxAttempts) * 95, 95));
-
-        if (attempts >= maxAttempts) {
-          clearInterval(interval);
-          setStatusMessage("❌ Timeout. Try again.");
-          setIsBundling(false);
-          setProgress(0);
+        } else if (res.status !== 404) {
+          console.error(`Release polling failed: ${res.status} ${await res.text()}`);
         }
       } catch (err) {
         console.error("Polling error:", err);
       }
-    }, 5000);
+
+      setProgress(Math.min((attempts / maxAttempts) * 95, 95));
+      if (attempts >= maxAttempts) {
+        setStatusMessage("❌ Build timed out. Check the bundle workflow in GitHub Actions.");
+        setIsBundling(false);
+        setProgress(0);
+        return;
+      }
+
+      setTimeout(poll, 10000);
+    };
+
+    setTimeout(poll, 5000);
   };
 
   const filteredData = Object.entries(data).map(([category, pages]) => {
