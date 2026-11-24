@@ -28,6 +28,7 @@ jobs:
           python-version: "3.11"
 
       - name: Build bundle
+        id: build
         env:
           SELECTED_PAGES_JSON: ${{ inputs.pages }}
           BUNDLE_ID: ${{ inputs.bundle_id }}
@@ -38,7 +39,7 @@ jobs:
         with:
           tag_name: gbe-bundle-${{ inputs.bundle_id }}
           name: GBE Deck bundle ${{ inputs.bundle_id }}
-          files: GBE-Custom-Bundle.tpz2
+          files: ${{ steps.build.outputs.bundle_file }}
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

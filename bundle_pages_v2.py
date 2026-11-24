@@ -36,7 +36,13 @@ if (
 if not isinstance(bundle_id, str) or not re.fullmatch(r"[A-Za-z0-9-]{1,64}", bundle_id):
     raise ValueError("Bundle ID may contain only letters, numbers, and hyphens")
 
-output_file = Path("GBE-Custom-Bundle.tpz2")
+page_slugs = [
+    re.sub(r"[^A-Za-z0-9]+", "-", name).strip("-")[:30].rstrip("-") or "Page"
+    for name in selected[:3]
+]
+if len(selected) > 3:
+    page_slugs.append(f"and-{len(selected) - 3}-more")
+output_file = Path(f"GBE-Deck-{'-'.join(page_slugs)}-{bundle_id[:8]}.tpz2")
 
 # Merged data holders
 merged_buttons = []
@@ -140,3 +146,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
             print(f"🧷 Added image: {img_file.name}")
 
 print(f"\n✅ [DONE] Created bundle: {output_file.resolve()}")
+
+github_output = os.environ.get("GITHUB_OUTPUT")
+if github_output:
+    with open(github_output, "a", encoding="utf-8") as f:
+        f.write(f"bundle_file={output_file.as_posix()}\n")

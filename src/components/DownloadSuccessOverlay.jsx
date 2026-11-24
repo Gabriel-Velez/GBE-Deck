@@ -3,7 +3,7 @@ import TpImport from "../assets/tp-import.png";
 import TpIconPack from "../assets/tp-import-iconpack.png";
 import TpPlugin from "../assets/tp-import-plugin.png";
 
-export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) {
+export default function DownloadSuccessOverlay({ uniqueDependencies, onClose, bundleFilename }) {
   const [showIconPackInstructions, setShowIconPackInstructions] = useState(false);
   const hasPlugins = uniqueDependencies?.some((dep) => dep.type === "plugin");
 
@@ -37,8 +37,8 @@ export default function DownloadSuccessOverlay({ uniqueDependencies, onClose }) 
           <div>
             <h3>Import Your Pages</h3>
             <p>
-              Open Touch Portal, click the gear icon → Import Pages, and select your
-              GBE-Custom-Bundle.tpz2 file.
+              Open Touch Portal, click the gear icon → Import Pages, and select your{" "}
+              <strong>{bundleFilename || "downloaded .tpz2 bundle"}</strong>.
             </p>
           </div>
           <img

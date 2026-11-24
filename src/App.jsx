@@ -13,6 +13,7 @@ function App() {
   const [statusMessage, setStatusMessage] = useState("");
   const [progress, setProgress] = useState(0);
   const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
+  const [bundleFilename, setBundleFilename] = useState("");
 
   const togglePage = (pageName) => {
     setSelectedPages((prev) =>
@@ -55,6 +56,7 @@ function App() {
     setIsBundling(true);
     setProgress(5);
     setStatusMessage("");
+    setBundleFilename("");
 
     try {
       const res = await fetch("https://gbe-deck-tpz2-bundle.gabriel-dan-velez.workers.dev", {
@@ -87,7 +89,6 @@ function App() {
     const url = `https://api.github.com/repos/Gabriel-Velez/GBE-Deck/releases/tags/${tag}`;
     let attempts = 0;
     const maxAttempts = 30;
-    const expectedFilename = "GBE-Custom-Bundle.tpz2";
 
     const poll = async () => {
       attempts++;
@@ -96,11 +97,12 @@ function App() {
         const res = await fetch(url);
         if (res.ok) {
           const release = await res.json();
-          const asset = release.assets.find((item) => item.name === expectedFilename);
+          const asset = release.assets.find((item) => item.name.endsWith(".tpz2"));
 
           if (asset) {
             setIsBundling(false);
             setProgress(100);
+            setBundleFilename(asset.name);
 
             const link = document.createElement("a");
             link.href = asset.browser_download_url;
@@ -224,6 +226,7 @@ function App() {
             setSelectedPages([]);
           }}
           uniqueDependencies={uniqueDependencies}
+          bundleFilename={bundleFilename}
         />
       )}
     </div>
